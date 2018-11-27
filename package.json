@@ -17,15 +17,10 @@
   "dependencies": {
     "@steemit/steem-js": "^0.7.2",
     "await-timeout": "^0.3.0",
-    "buefy": "^0.6.7",
+    "buefy": "^0.7.1",
     "bulma-extensions": "^3.0.0",
     "es6-promisify": "^6.0.0",
     "jwt-decode": "^2.2.0",
-    "koa": "^2.6.2",
-    "koa-no-cache": "^2.0.0",
-    "koa-send": "^5.0.0",
-    "koa-static": "^5.0.0",
-    "koa-static-cache": "^5.1.2",
     "mini-toastr": "^0.8.1",
     "moment": "^2.22.2",
     "register-service-worker": "^1.0.0",
@@ -43,17 +38,25 @@
     "xhr": "^2.5.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-pwa": "^3.0.3",
+    "koa": "^2.6.2",
+    "koa-no-cache": "^2.0.0",
+    "koa-send": "^5.0.0",
+    "koa-static": "^5.0.0",
+    "koa-static-cache": "^5.1.2",
     "@vue/cli-plugin-babel": "^3.1.1",
-    "@vue/cli-service": "^3.0.3",
     "@vue/cli-plugin-eslint": "^3.1.5",
+    "@vue/cli-plugin-pwa": "^3.0.3",
+    "@vue/cli-service": "^3.0.3",
     "babel-eslint": "^10.0.1",
     "dotenv": "^6.1.0",
+    "dynamic-cdn-webpack-plugin": "^4.0.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
     "lint-staged": "^7.2.2",
+    "module-to-cdn": "^3.1.2",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "vue-cli-plugin-buefy": "^0.3.3",
     "vue-template-compiler": "^2.5.17"
   },
   "postcss": {
@@ -73,11 +76,7 @@
     "pre-commit": "lint-staged || true"
   },
   "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
+    "*.{js,mjs,vue}": [
       "vue-cli-service lint",
       "git add"
     ]

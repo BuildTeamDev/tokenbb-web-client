@@ -2,15 +2,11 @@
   // Import Bulma's core
   @import "~bulma/sass/utilities/_all";
 
-  @import "./global/variables.scss";
-
   // Set your colors
   $primary: #0008ef;
   $primary-invert: findColorInvert($primary);
   $twitter: #6562ff;
   $twitter-invert: findColorInvert($twitter);
-
-  @import "./global/variables.scss";
 
   // Setup $colors to use as bulma classes (e.g. 'is-twitter')
   $colors: (

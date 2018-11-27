@@ -16,8 +16,6 @@
     src: url('https://steemmonsters.com/styles/fonts/Open_Sans/OpenSans-Regular.ttf') format('woff'), /* Pretty Modern Browsers */
   }
 
-  @import "./global/variables.scss";
-
   // Set your colors
   $primary: #d58512;
   $primary-invert: findColorInvert($primary);
