@@ -5,7 +5,7 @@ import noCache from 'koa-no-cache';
 import serveCache from 'koa-static-cache';
 import send from 'koa-send';
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 const app = new Koa();
 
 /* force https */
