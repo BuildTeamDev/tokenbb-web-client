@@ -38,11 +38,6 @@
     "xhr": "^2.5.0"
   },
   "devDependencies": {
-    "koa": "^2.6.2",
-    "koa-no-cache": "^2.0.0",
-    "koa-send": "^5.0.0",
-    "koa-static": "^5.0.0",
-    "koa-static-cache": "^5.1.2",
     "@vue/cli-plugin-babel": "^3.1.1",
     "@vue/cli-plugin-eslint": "^3.1.5",
     "@vue/cli-plugin-pwa": "^3.0.3",
@@ -52,9 +47,16 @@
     "dynamic-cdn-webpack-plugin": "^4.0.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
+    "glob-all": "^3.1.0",
+    "koa": "^2.6.2",
+    "koa-no-cache": "^2.0.0",
+    "koa-send": "^5.0.0",
+    "koa-static": "^5.0.0",
+    "koa-static-cache": "^5.1.2",
     "lint-staged": "^7.2.2",
     "module-to-cdn": "^3.1.2",
     "node-sass": "^4.9.0",
+    "purgecss-webpack-plugin": "^1.4.0",
     "sass-loader": "^7.0.1",
     "vue-cli-plugin-buefy": "^0.3.3",
     "vue-template-compiler": "^2.5.17"
