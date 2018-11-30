@@ -5,7 +5,13 @@
 .env file:
 
 ```sh
-VUE_APP_STACK_NAME=my-app
+VUE_APP_AUTH_HOST=https://auth.bt.com
+VUE_APP_API_HOST=https://api.bt.com
+VUE_APP_BASE_URL=https://tokenbb.bt.com
+VUE_APP_BASE_PATH=tokenbb.bt.com
+
+VUE_APP_STACK_NAME=monsters
+FORUM_TITLE=Steem Monster Forum
 ```
 
 ## Develop

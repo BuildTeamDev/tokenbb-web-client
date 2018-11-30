@@ -1,20 +1,17 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <section class="section" v-if="loaded">
+    <section
+      class="section"
+      v-if="loaded"
+    >
       <router-view />
     </section>
   </div>
 </template>
 
-<style lang="scss">
-@import "./themes/default.scss";
-@import "./themes/monsters.scss";
-</style>
-
 <script>
 import Navbar from './components/Navbar.vue';
-
 
 export default {
   components: {
