@@ -28,7 +28,7 @@ export default {
     },
   },
   actions: {
-    add( { commit }, { categoryName, title, description } ) {
+    add( { commit }, { name: categoryName, title, description } ) {
       commit( 'setFetching', true );
 
       addCategory( categoryName, title, description )

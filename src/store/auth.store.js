@@ -16,6 +16,7 @@ export default {
     },
     current: 'anon',
     manageLink: '',
+    addLink: '',
   },
   mutations: {
     init( state, store ) {
@@ -62,6 +63,7 @@ export default {
         steem.token = user;
       }
       state.manageLink = window.BTSSO.getAccountManageLink();
+      state.addLink = window.BTSSO.addSteemAccount;
     },
     setUsername( state, username ) {
       state.username = username;

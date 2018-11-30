@@ -77,9 +77,12 @@ export default {
     },
     async updateValue() {
       const data = await steem.getContent( this.author, this.permlink );
-      this.value = data.pending_payout_value.split( ' ' )[0];
+      const pending = parseFloat( data.pending_payout_value.split( ' ' )[0] );
+      const paid = parseFloat( data.total_payout_value.split( ' ' )[0] );
+      this.value = ( paid + pending ).toFixed( 3 );
       this.votes = data.active_votes;
-      this.voted = this.$store.state.auth.current === 'anon'
+      this.voted = paid > 0
+        || this.$store.state.auth.current === 'anon'
         || this.votes.filter( ( _vote ) => _vote.voter === this.$store.state.auth.current ).length > 0;
     },
     async handleClick() {

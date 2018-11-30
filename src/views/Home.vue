@@ -45,7 +45,9 @@
           </router-link>
         </b-table-column>
         <b-table-column field="author" label="Author">
-          <Avatar :author="props.row.author.user" size="medium"></Avatar>
+          <Avatar :author="props.row.author.user"
+                  :owner="props.row.author.owner_id"
+                  size="medium"></Avatar>
         </b-table-column>
         <b-table-column field="categoryId" label="Category">
           <CategoryTag :categoryId="props.row.categoryId">
@@ -64,7 +66,9 @@
         </b-table-column>
         <b-table-column field="numberOfReplies" label="User">
           <template v-if="props.row.numberOfReplies > 0">
-            <Avatar :author="props.row.lastReply.author" size="medium"></Avatar>
+            <Avatar :author="props.row.lastReply.author"
+                    :owner="props.row.lastReply.owner"
+                    size="medium"></Avatar>
           </template>
         </b-table-column>
         <b-table-column field="numberOfVotes" label="Votes">
@@ -102,7 +106,8 @@ export default {
       'list',
     ] ),
     ...mapState( 'categories', [
-      'categoriesBySlug',
+      'categoriesById',
+      'categoryList',
     ] ),
     loggedIn() {
       return this.$store.state.auth.username;
@@ -118,7 +123,7 @@ export default {
     },
   },
   beforeRouteUpdate( to, from, next ) {
-    this.selectedCategoryId = to.query.category || null;
+    this.fetchCategory( to.query.category );
 
     next();
   },
@@ -126,7 +131,22 @@ export default {
     this.$store.dispatch( 'categories/fetchAll' )
       .then( () => this.$store.dispatch( 'topics/fetchAll' ) )
       .then( () => {
-        this.selectedCategoryId = this.$router.currentRoute.query.category || null;
+        this.$nextTick( () => {
+          const categoryParam = this.$router.currentRoute.query.category;
+          const counter = parseInt( this.$router.currentRoute.query.i ) || 0;
+          if ( categoryParam ) {
+            this.$router.push( {
+              path: '/',
+              query: { category: categoryParam, i: counter + 1 },
+            } );
+            this.$nextTick( () => {
+              this.$router.push( {
+                path: '/',
+                query: { category: categoryParam },
+              } );
+            } );
+          }
+        } );
       } );
   },
   data() {
@@ -136,14 +156,22 @@ export default {
     };
   },
   methods: {
+    fetchCategory( categoryQuery ) {
+      this.selectedCategoryId = categoryQuery || null;
+      const selectedCategory = this.$store.state.categories.categoryList.find( ( category ) => {
+        return category.slug === this.selectedCategoryId
+               || category._id === this.selectedCategoryId;
+      } ) || {};
+      this.selectedCategoryId = selectedCategory._id;
+    },
     getRowClass( row ) {
       return row.pinned ? 'pinned' : '';
     },
-    onSelectCategoryId( id ) {
+    onSelectCategoryId( selectedCategory ) {
       this.$router.push( {
         path: '/',
-        query: id
-          ? { category: id }
+        query: selectedCategory
+          ? { category: selectedCategory.slug }
           : {},
       } );
     },

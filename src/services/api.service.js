@@ -92,7 +92,7 @@ export function createForum( forumName ) {
     headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
     url: `${process.env.VUE_APP_API_HOST}/v1/forum/`,
     body: {
-      forumName,
+      name: forumName,
     },
   };
 
@@ -106,7 +106,7 @@ export function addCategory( categoryName, title, description ) {
     headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
     url: apiURL() + '/categories/',
     body: {
-      categoryName,
+      name: categoryName,
       title,
       description,
     },

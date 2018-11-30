@@ -33,6 +33,14 @@
             </p>
             <p class="tr is-right">
               <router-link
+                      v-if="auth.username"
+                      to="/create-forum"
+                      class="navbar-item is-primary">
+                Create Forum
+              </router-link>
+            </p>
+            <p class="tr is-right">
+              <router-link
                       v-if="auth.admin"
                       to="/settings"
                       class="navbar-item is-primary">
@@ -55,6 +63,11 @@
               </p>
           </div>
           <div v-if="auth.username" class="navbar-item is-expanded tr">
+            <p class="tr is-right">
+              <a class="navbar-item is-primary" @click="auth.addLink">
+                Add Steem Account
+              </a>
+            </p>
             <p class="tr is-right">
               <a class="navbar-item is-primary" @click="logout">
                 Logout

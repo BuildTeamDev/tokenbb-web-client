@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     onChange( value ) {
-      this.$emit( 'change', value._id || null );
+      this.$emit( 'change', value || null );
     },
   },
 };

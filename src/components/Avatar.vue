@@ -7,7 +7,7 @@
       <img
         class="is-rounded"
         :title="author"
-        :src="avatarURL(author)">
+        :src="avatarURL(author, owner)">
     </figure>
   </b-tooltip>
 </template>
@@ -22,6 +22,7 @@ const SIZES = {
 export default {
   props: {
     author: String,
+    owner: String,
     size: String,
   },
   computed: {
@@ -30,8 +31,11 @@ export default {
     },
   },
   methods: {
-    avatarURL( author ) {
-      return 'https://img.busy.org/@' + author;
+    avatarURL( author, owner ) {
+      if ( author !== 'tokentestanon' ) {
+        return `https://img.busy.org/@${author}`;
+      }
+      return `https://robohash.org/${owner}.png?set=set4`;
     },
   },
 };
