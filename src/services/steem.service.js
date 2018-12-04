@@ -18,8 +18,7 @@ class SteemService {
   }
 
   getTopic( author, permlink ) {
-    const app = process.env.VUE_APP_STACK_NAME;
-    const path = `/tokenbb-${app}-topics/@${author}/${permlink}`;
+    const path = `/tokenbb-${global.forumname}-topics/@${author}/${permlink}`;
 
     return steem.api.callAsync( 'get_state', [ path ] )
       .then( ( res ) => {

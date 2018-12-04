@@ -29,14 +29,14 @@ module.exports = {
       } );
 
       config.module.rule( theme.name ).test( themePath ).merge( styleLoader );
-      config.entry( 'theme.' + theme.name ).add( themePath );
+      config.entry( 'theme-' + theme.name ).add( themePath );
     }
 
     // #region Exclude themes being added to index.html to support injecting custom theme
     config.plugin( 'exclude-assets' ).use( require( 'html-webpack-exclude-assets-plugin' ) );
     config.plugin( 'html' ).tap( ( options ) => {
       options[0].title = FORUM_TITLE;
-      options[0].excludeAssets = [ /theme.*.css/, /theme.*.js/ ];
+      options[0].excludeAssets = [ /theme-*.css/, /theme-*.js/ ];
       return options;
     } );
 
@@ -70,7 +70,7 @@ module.exports = {
       },
     },
     plugins: [
-      new webpack.IgnorePlugin( /^\.\/locale$/, /moment$/ ), // TODO: replace momentjs with native js implementation
+      new webpack.IgnorePlugin( /^\.\/locale$/, /moment$/ ), // TODO: replace momentjs with native js implementation or luxon
       new PurgecssPlugin( {
         rejected: true, // print the removed class style on webpack stats
         paths: glob( [
