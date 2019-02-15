@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[Feature] Type here..."
-labels: enhancement
-assignees: reggaemuffin
+title: ''
+labels: enhancement, help wanted
+assignees: ''
 
 ---
 
