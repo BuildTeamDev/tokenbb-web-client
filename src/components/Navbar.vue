@@ -67,6 +67,9 @@
             <b-dropdown-item class="is-right" @click="auth.addLink">
                 Add Steem Account
             </b-dropdown-item>
+            <b-dropdown-item class="is-right" @click="toggleDarkMode">
+                Activate {{ darkMode ? 'Light' : 'Dark' }} Theme
+            </b-dropdown-item>
             <b-dropdown-item class="is-right" @click="auth.autoMode">
                 Enable MB Auto Mode
             </b-dropdown-item>
@@ -100,6 +103,7 @@ export default {
   data() {
     return {
       menuActive: false,
+      darkMode: true,
     };
   },
   computed: {
@@ -114,6 +118,11 @@ export default {
     },
     login() {
       this.$store.commit( 'auth/toggleAccountModal' );
+    },
+    toggleDarkMode() {
+      this.darkMode = !this.darkMode;
+      this.$root.$emit( `set-darkMode-${this.darkMode}` );
+      console.log( this.darkMode );
     },
   },
 };
