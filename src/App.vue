@@ -41,5 +41,16 @@ export default {
         } );
     } );
   },
+  created() {
+    this.$root.$on( 'set-darkMode-false', () => this.appendThemeMode( 'theme-lightmode' ) );
+    this.$root.$on( 'set-darkMode-true', () => this.appendThemeMode( 'theme-darkmode' ) );
+  },
+  methods: {
+    appendThemeMode( mode ) {
+      const oldClassName = document.documentElement.className;
+      document.documentElement.className =
+        `${oldClassName.replace( /\s+theme-(dark|light)mode/g, '' )} ${mode}`;
+    },
+  },
 };
 </script>
