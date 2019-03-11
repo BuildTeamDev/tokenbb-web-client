@@ -1,7 +1,5 @@
 import Koa from 'koa';
 import serve from 'koa-static';
-import noCache from 'koa-no-cache';
-import serveCache from 'koa-static-cache';
 import send from 'koa-send';
 
 const port = process.env.PORT || 3000;
@@ -15,15 +13,9 @@ app.use( async ( ctx, next ) => {
   return await next();
 } );
 
-app.use( serve( 'dist/service-worker.js' ) );
-app.use( noCache( {
-  paths: [ 'dist/service-worker.js' ],
-} ) );
-
-const oneWeek = 1000 * 60 * 60 * 24 * 7;
-
-app.use( serveCache( 'dist', {
-  maxAge: 365 * 24 * 60 * 60,
+app.use( serve( 'dist', {
+  gzip: true,
+  br: true,
 } ) );
 
 /* serve index.html for all 404 routes */

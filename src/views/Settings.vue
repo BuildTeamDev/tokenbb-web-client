@@ -4,9 +4,9 @@
 
     <h3 class="title is-5">Categories</h3>
 
-    <b-table
-      :data="categoryList"
+    <b-table class="box-styling setting-page"
       striped
+      :data="categoryList"
       mobile-cards>
 
       <template slot-scope="props">

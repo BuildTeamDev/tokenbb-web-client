@@ -103,9 +103,9 @@ export default {
     Avatar,
     Upvote,
     ModActions,
-    ShowIfLoggedIn
+    ShowIfLoggedIn,
   },
- props: {
+  props: {
     data: Object,
     isReply: Boolean,
   },
@@ -155,7 +155,7 @@ export default {
       this.text = '';
       this.editing = false;
     },
-    handleQuoteClick( event ) {
+    handleQuoteClick() {
       this.$root.$emit( 'quote-click', this.data );
     },
   },

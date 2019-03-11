@@ -579,6 +579,15 @@ form .button:hover {
   display: flex;
 }
   /* Settings Page */
+.table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: #333;
+}
+.table.is-striped tbody tr:not(.is-selected):nth-child(even):hover {
+  background-color: #333;
+}
+.setting-page {
+  border: 1px solid #333333;
+}
   // make sure to have all sensible defaults set
   @import "./global/sensible-defaults.scss";
 }
