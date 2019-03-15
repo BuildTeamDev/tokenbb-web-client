@@ -20,6 +20,9 @@
 
 import Icon from 'buefy/src/components/icon/Icon';
 import Avatar from '../components/Avatar.vue';
+
+import { DateTime } from 'luxon';
+
 import { formatDateTimeFromNow } from '../utils/content';
 
 export default {
@@ -39,6 +42,8 @@ export default {
   data() {
     return {
       ticker: 0,
+      timeout: 1000,
+      timeoutHandle: 0,
     };
   },
   computed: {
@@ -49,9 +54,34 @@ export default {
   },
   mounted() {
     const self = this;
-    setInterval( function () {
+    clearTimeout( self.$data.timeoutHandle );
+    self.$data.timeoutHandle = setTimeout( updateTime, self.$data.timeout );
+    function updateTime() {
+      const timeString = self.$props.time || self.$props.lastReply.time;
+      const time = DateTime.fromISO( timeString );
+      const minutesDiff = DateTime.local().diff( time, 'minutes' ).as( 'minutes' );
+      if ( minutesDiff < 1 ) {
+        self.$data.timeout = 1000;
+      } else if ( minutesDiff < 10 ) {
+        self.$data.timeout = 10 * 1000;
+      } else if ( minutesDiff < 60 ) {
+        self.$data.timeout = 60 * 1000;
+      } else if ( minutesDiff < 24 * 60 ) {
+        self.$data.timeout = 10 * 60 * 1000;
+      } else {
+        self.$data.timeout = 60 * 60 * 1000;
+      }
+      if ( self.$data.timeout > 1000 ) {
+        self.$data.timeout -= parseInt( Math.random() * 0.1 * self.$data.timeout );
+      }
+      console.log( `Updating time ${minutesDiff}, ${self.$data.timeout}}` );
       self.$data.ticker += 1;
-    }, 1000 );
+      clearTimeout( self.$data.timeoutHandle );
+      self.$data.timeoutHandle = setTimeout( updateTime, self.$data.timeout );
+    }
+  },
+  beforeDestroy() {
+    clearTimeout( this.$data.timeoutHandle );
   },
 };
 </script>
