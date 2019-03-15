@@ -22,6 +22,11 @@ const router = new Router( {
       name: 'settings',
       component: loadView( 'Settings' ),
     },
+     {
+      path: '/categories',
+      name: 'categories',
+      component: loadView( 'Categories' ),
+    },
     {
       path: '/create-forum',
       name: 'create-forum',
