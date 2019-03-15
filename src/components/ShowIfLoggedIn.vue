@@ -1,7 +1,10 @@
 <template>
   <div>
     <div v-if="!loggedIn && !hidden">
-      <button @click="login">
+      <button
+        class="button is-small"
+        @click="login"
+      >
         {{ text || 'Login to reply' }}
       </button>
     </div>
