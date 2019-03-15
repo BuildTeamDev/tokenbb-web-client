@@ -4,13 +4,36 @@
       :data="categoryList"
     >
       <template slot-scope="props">
-        {{ props.row.slug }}
+        <b-collapse
+          class="card"
+          aria-id="contentIdForA11y3"
+        >
+          <div
+            slot="trigger"
+            class="card-header"
+            role="button"
+            aria-controls="contentIdForA11y3"
+          >
+            <p class="card-header-title">
+              {{ props.row.title }}
+            </p>
+            <a class="card-header-icon">
+              <b-icon
+                :icon="props.open ? 'menu-down' : 'menu-down'"
+              />
+            </a>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <ul>
+                <li>{{ props.row.slug }}</li>
+                <li>{{ props.row.name }}</li>
+                <li>{{ props.row.description }}</li>
+              </ul>
+            </div>
+          </div>
+        </b-collapse>
 
-        {{ props.row.name }}
-
-        {{ props.row.title }}
-
-        {{ props.row.description }}
         <!--
         <b-table-column label="Delete" centered>
 
@@ -33,11 +56,15 @@
 import { mapState } from 'vuex';
 
 import Table from 'buefy/src/components/table/Table';
+import Icon from 'buefy/src/components/icon/Icon';
+import Collapse from 'buefy/src/components/collapse/Collapse';
 
 export default {
   name: 'Categories',
   components: {
     BTable: Table,
+    BIcon: Icon,
+    BCollapse: Collapse,
   },
   data() {
     return {
