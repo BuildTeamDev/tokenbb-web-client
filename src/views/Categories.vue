@@ -14,9 +14,9 @@
             role="button"
             aria-controls="contentIdForA11y3"
           >
-            <p class="card-header-title">
+            <h1 class="card-header-title">
               {{ props.row.title }}
-            </p>
+            </h1>
             <a class="card-header-icon">
               <b-icon
                 :icon="props.open ? 'menu-down' : 'menu-down'"
@@ -24,12 +24,10 @@
             </a>
           </div>
           <div class="card-content">
-            <div class="content">
-              <ul>
-                <li>{{ props.row.slug }}</li>
-                <li>{{ props.row.name }}</li>
-                <li>{{ props.row.description }}</li>
-              </ul>
+            <div class="columns">
+              <div class="column cat-description">
+                <span class="is-small">{{ props.row.description }}</span>
+              </div>
             </div>
           </div>
         </b-collapse>
