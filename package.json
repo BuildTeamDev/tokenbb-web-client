@@ -77,6 +77,6 @@
     "request": "xhr"
   },
   "gitHooks": {
-    "pre-commit": "npm run fix-code && npm run fix-styles"
+    "pre-commit": "npm run lint"
   }
 }
