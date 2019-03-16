@@ -1,5 +1,5 @@
-
 import Vue from 'vue';
+import { split } from 'lodash';
 
 import App from './App.vue';
 
@@ -17,12 +17,20 @@ registerSW();
 
 const contextMap = {
   default: { theme: 'theme-default', forum: 'support', icon: 'favicon.ico' },
-  monsters: { theme: 'theme-monsters', forum: 'monsters', icon: 'favicon_teeth.png' },
-  drugwars: { theme: 'theme-drugwars', forum: 'drugwars', icon: 'themes/drugwars/small.png' },
+  monsters: {
+    theme: 'theme-monsters',
+    forum: 'monsters',
+    icon: 'favicon_teeth.png',
+  },
+  drugwars: {
+    theme: 'theme-drugwars',
+    forum: 'drugwars',
+    icon: 'themes/drugwars/small.png',
+  },
   localhost: { theme: 'theme-default', forum: 'test', icon: 'favicon.ico' },
 };
 let context = contextMap.default;
-const subs = ( new URL( window.location ) ).hostname.split( '.' );
+const subs = split( new URL( window.location ).hostname, '.' );
 if ( contextMap.hasOwnProperty( subs[0] ) ) {
   context = contextMap[subs[0]];
 } else if ( subs.length >= 2 ) {
@@ -30,17 +38,16 @@ if ( contextMap.hasOwnProperty( subs[0] ) ) {
     context.forum = subs[0];
   }
 }
-console.log( `Loading TokenBB on ${ context.forum } with ${ context.theme }` );
-document.documentElement.className = `${ context.theme }`;
+console.info( `Loading TokenBB on ${context.forum} with ${context.theme}` );
+document.documentElement.className = `${context.theme}`;
 global.forumname = context.forum;
 document.title = `TokenBB ${global.forumname}`;
 
-const link = document.querySelector( 'link[rel*=\'icon\']' ) || document.createElement( 'link' );
+const link = document.querySelector( "link[rel*='icon']" ) || document.createElement( 'link' );
 link.type = 'image/x-icon';
 link.rel = 'shortcut icon';
-link.href = `${ process.env.VUE_APP_BASE_URL }/${ context.icon }`;
+link.href = `${process.env.VUE_APP_BASE_URL}/${context.icon}`;
 document.getElementsByTagName( 'head' )[0].appendChild( link );
-
 
 Vue.config.productionTip = false;
 
@@ -58,16 +65,20 @@ Vue.use( VueAnalytics, {
   },
 } );
 
-window.setGAUserID = setGAUserID;
-function setGAUserID( userID ) {
+const setGAUserID = ( userID ) => {
   Vue.$ga.set( 'userId', userID );
-}
+};
+window.setGAUserID = setGAUserID;
 
 Vue.use( steemEditor );
 
+// eslint-disable-next-line lodash/prefer-lodash-method
 Vue.filter( 'formatDate', formatDate );
+
+// eslint-disable-next-line lodash/prefer-lodash-method
 Vue.filter( 'fromNow', formatDateTimeFromNow );
 
+// eslint-disable-next-line lodash/prefer-lodash-method
 Vue.filter( 'usernameDisplay', ( username, owner ) => {
   if ( username === process.env.VUE_APP_ANON_USER ) {
     return `GuestUser#${owner.substring( 4, 10 )}`;

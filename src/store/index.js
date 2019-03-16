@@ -6,7 +6,6 @@ import categories from './categories.store';
 import replies from './replies.store';
 import topics from './topics.store';
 
-
 Vue.use( Vuex );
 
 export default new Vuex.Store( {

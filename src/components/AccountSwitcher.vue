@@ -1,49 +1,22 @@
 <template>
-  <b-dropdown
-    class="is-right"
-    @change="onChange"
-  >
-    <button
-      slot="trigger"
-      class="button is-small"
-      type="button"
-    >
-      <Avatar
-        :author="current"
-        :owner="id"
-        size="small"
-      />&nbsp;
-      {{ current | usernameDisplay(id) }} <b-icon icon="menu-down" />
+  <b-dropdown class="is-right" @change="onChange">
+    <button slot="trigger" class="button is-small" type="button">
+      <Avatar :author="current" :owner="id" size="small" />
+      &nbsp;
+      {{ current | usernameDisplay(id) }}
+      <b-icon icon="menu-down" />
     </button>
 
     <b-dropdown-item :value="all">
-      <Avatar
-        :author="all.account"
-        :owner="id"
-        size="small"
-      />&nbsp;
+      <Avatar :author="all.account" :owner="id" size="small" />
+      &nbsp;
       {{ all.account | usernameDisplay(id) }}
     </b-dropdown-item>
 
-    <b-dropdown-item
-      v-for="(account, index) in accounts"
-      :key="index"
-      :value="account"
-    >
-      <Avatar
-        :author="account.account"
-        size="small"
-      />&nbsp;
-      <b-icon
-        v-if="account.authority.posting"
-        icon="check-circle"
-        type="is-success"
-      />
-      <b-icon
-        v-else
-        icon="alert-circle"
-        type="is-danger"
-      />
+    <b-dropdown-item v-for="(account, index) in accounts" :key="index" :value="account">
+      <Avatar :author="account.account" size="small" />&nbsp;
+      <b-icon v-if="account.authority.posting" icon="check-circle" type="is-success" />
+      <b-icon v-else icon="alert-circle" type="is-danger" />
       {{ account.account }}
     </b-dropdown-item>
   </b-dropdown>
@@ -57,7 +30,10 @@ import Icon from 'buefy/src/components/icon/Icon';
 
 import Avatar from './Avatar.vue';
 
-const ALL = { account: process.env.VUE_APP_ANON_USER, 'authority': { 'posting': true } };
+const ALL = {
+  account: process.env.VUE_APP_ANON_USER,
+  authority: { posting: true },
+};
 
 export default {
   components: {
@@ -73,11 +49,7 @@ export default {
     };
   },
   computed: {
-    ...mapState( 'auth', [
-      'accounts',
-      'current',
-      'id',
-    ] ),
+    ...mapState( 'auth', [ 'accounts', 'current', 'id' ] ),
   },
   methods: {
     onChange( value ) {

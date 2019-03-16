@@ -1,24 +1,12 @@
 <template>
-  <b-tooltip
-    :label="author | usernameDisplay(owner)"
-    size="is-small"
-    type="is-black"
-  >
-    <figure
-      class="image avatar"
-      :class="classes"
-    >
-      <img
-        class="is-rounded"
-        :title="author | usernameDisplay(owner)"
-        :src="avatarURL(author, owner)"
-      >
+  <b-tooltip :label="author | usernameDisplay(owner)" size="is-small" type="is-black">
+    <figure class="image avatar" :class="classes">
+      <img class="is-rounded" :title="author | usernameDisplay(owner)" :src="avatarURL(author, owner)" />
     </figure>
   </b-tooltip>
 </template>
 
 <script>
-
 import Tooltip from 'buefy/src/components/tooltip/Tooltip';
 
 const SIZES = {

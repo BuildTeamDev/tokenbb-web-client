@@ -2,42 +2,23 @@
   <ShowIfLoggedIn :hidden="true">
     <span class="upvote-control">
       <span class="upvote-value">${{ value }}</span>
-      <span class="upvote-lenght"><b-icon
-        icon="arrow-up-drop-circle-outline"
-        size="is-small"
-      />{{ votes.length }}</span>
+      <span class="upvote-lenght">
+        <b-icon icon="arrow-up-drop-circle-outline" size="is-small" />
+        {{ votes.length }}
+      </span>
     </span>
 
-    <b-dropdown
-      v-if="!disabled"
-      position="is-top-left"
-      hoverable
-      :disabled="voted"
-      class="upvote-drop-control"
-    >
-      <span
-        slot="trigger"
-        class="upvote-slider"
-      >
-        <a
-          class="is-small"
-          :class="{ 'is-loading': this.fetching }"
-          :disabled="voted"
-          @click="handleClick"
-        >
+    <b-dropdown v-if="!disabled" position="is-top-left" hoverable :disabled="voted" class="upvote-drop-control">
+      <span slot="trigger" class="upvote-slider">
+        <a class="is-small" :class="{ 'is-loading': this.fetching }" :disabled="voted" @click="handleClick">
           <!--<span>Upvote</span>-->
-          <b-icon
-            icon="arrow-up-drop-circle-outline"
-            size="is-medium"
-          />
+          <b-icon icon="arrow-up-drop-circle-outline" size="is-medium" />
         </a>
       </span>
       <b-dropdown-item custom>
         <div class="level is-mobile">
           <div class="level-left">
-            <div class="level-item percent-label">
-              {{ percent }}%
-            </div>
+            <div class="level-item percent-label">{{ percent }}%</div>
             <div class="level-item">
               <input
                 ref="slider"
@@ -49,22 +30,14 @@
                 :value="percent"
                 type="range"
                 @input="handleChange"
-              >
+              />
             </div>
           </div>
           <div class="level-right">
             <div class="level-item">
-              <a
-                class="is-small upvote-dropdownbutton"
-                :class="{ 'is-loading': this.fetching }"
-                :disabled="voted"
-                @click="handleClick"
-              >
+              <a class="is-small upvote-dropdownbutton" :class="{ 'is-loading': this.fetching }" :disabled="voted" @click="handleClick">
                 <!--<span>Upvote</span>-->
-                <b-icon
-                  icon="arrow-up-drop-circle-outline"
-                  size="is-medium"
-                />
+                <b-icon icon="arrow-up-drop-circle-outline" size="is-medium" />
               </a>
             </div>
           </div>
@@ -75,11 +48,9 @@
 </template>
 
 <script>
-
 import Dropdown from 'buefy/src/components/dropdown/Dropdown';
 import DropdownItem from 'buefy/src/components/dropdown/DropdownItem';
 import Icon from 'buefy/src/components/icon/Icon';
-
 
 import { Client } from 'dsteem';
 
@@ -115,9 +86,9 @@ export default {
   },
   computed: {
     voted() {
-      return this.paid > 0
-        || this.$store.state.auth.current === 'anon'
-        || this.votes.filter( ( _vote ) => _vote.voter === this.$store.state.auth.current ).length > 0;
+      return (
+        this.paid > 0 || this.$store.state.auth.current === 'anon' || this.votes.filter( ( _vote ) => _vote.voter === this.$store.state.auth.current ).length > 0
+      );
     },
   },
   mounted() {

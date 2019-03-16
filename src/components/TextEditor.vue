@@ -1,13 +1,8 @@
 <template>
-  <steem-editor
-    v-model="content"
-    language="en"
-    :toolbars="customToolbar"
-  />
+  <steem-editor v-model="content" language="en" :toolbars="customToolbar" />
 </template>
 
 <script>
-
 import { quoteText } from '../utils/content';
 
 export default {

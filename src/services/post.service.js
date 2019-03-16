@@ -1,17 +1,7 @@
-import {
-  getValidTopic,
-  listValidTopics,
-  publishReply,
-  publishTopic,
-} from './api.service.js';
+import { getValidTopic, listValidTopics, publishReply, publishTopic } from './api.service.js';
+import { map } from 'lodash';
 
-
-export async function listTopics( category ) {
-  const topics = await listValidTopics( category );
-  return topics.data.map( postToTopic );
-}
-
-export function postToTopic( post ) {
+export const postToTopic = ( post ) => {
   return {
     id: post.id,
     pinned: post.pinned,
@@ -29,9 +19,14 @@ export function postToTopic( post ) {
     numberOfViews: post.meta.views,
     lastReply: post.meta.last_reply,
   };
-}
+};
 
-export async function getTopic( author, permlink ) {
+export const listTopics = async ( category ) => {
+  const topics = await listValidTopics( category );
+  return map( topics.data, postToTopic );
+};
+
+export const getTopic = async ( author, permlink ) => {
 
   // throw Error('Implement this with api call to db and redirect')
   const topic = await getValidTopic( author, permlink );
@@ -39,17 +34,16 @@ export async function getTopic( author, permlink ) {
     return null;
   }
   return postToTopic( topic.data );
-}
-export function createTopic( author, category, title, content ) {
+};
+export const createTopic = ( author, category, title, content ) => {
   return publishTopic( category, author, title, content );
-}
+};
 
-export function createReply( parentComment, author, content ) {
+export const createReply = ( parentComment, author, content ) => {
   const message = {
     author,
     content,
   };
 
   return publishReply( parentComment, message ).then( ( result ) => result.data );
-}
-
+};

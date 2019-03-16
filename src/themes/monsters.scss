@@ -7,13 +7,15 @@
   }
 
   @font-face {
-    font-family: 'ruba';
-    src: url('https://steemmonsters.com/styles/fonts/ruba_oblique-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+    font-family: "ruba";
+    src: url("https://steemmonsters.com/styles/fonts/ruba_oblique-webfont.woff")
+      format("woff"); /* Pretty Modern Browsers */
   }
 
   @font-face {
-    font-family: 'OpenSans';
-    src: url('https://steemmonsters.com/styles/fonts/Open_Sans/OpenSans-Regular.ttf') format('woff'), /* Pretty Modern Browsers */
+    font-family: "OpenSans";
+    src: url("https://steemmonsters.com/styles/fonts/Open_Sans/OpenSans-Regular.ttf")
+      format("woff"); /* Pretty Modern Browsers */
   }
 
   @import "./global/variables.scss";
@@ -21,29 +23,59 @@
   // Set your colors
   $primary: #d58512;
   $primary-invert: findColorInvert($primary);
-  $twitter: #4099FF;
+  $twitter: #4099ff;
   $twitter-invert: findColorInvert($twitter);
 
   $info: $green;
 
-  $background: #002A30;
-  $family-primary: 'OpenSans', sans-serif;
-  $light-blue: #00454E;
+  $background: #002a30;
+  $family-primary: "OpenSans", sans-serif;
+  $light-blue: #00454e;
 
-  $background-image: url('https://s3.amazonaws.com/steemmonsters/website/buy-cards-bg.jpg');
+  $background-image: url("https://s3.amazonaws.com/steemmonsters/website/buy-cards-bg.jpg");
 
   // Setup $colors to use as bulma classes (e.g. 'is-twitter')
   $colors: (
-          "white": ($white, $black),
-          "black": ($black, $white),
-          "light": ($light, $light-invert),
-          "dark": ($dark, $dark-invert),
-          "primary": ($primary, $primary-invert),
-          "info": ($info, $info-invert),
-          "success": ($success, $success-invert),
-          "warning": ($warning, $warning-invert),
-          "danger": ($danger, $danger-invert),
-          "twitter": ($twitter, $twitter-invert)
+    "white": (
+      $white,
+      $black
+    ),
+    "black": (
+      $black,
+      $white
+    ),
+    "light": (
+      $light,
+      $light-invert
+    ),
+    "dark": (
+      $dark,
+      $dark-invert
+    ),
+    "primary": (
+      $primary,
+      $primary-invert
+    ),
+    "info": (
+      $info,
+      $info-invert
+    ),
+    "success": (
+      $success,
+      $success-invert
+    ),
+    "warning": (
+      $warning,
+      $warning-invert
+    ),
+    "danger": (
+      $danger,
+      $danger-invert
+    ),
+    "twitter": (
+      $twitter,
+      $twitter-invert
+    )
   );
 
   // Links
@@ -59,7 +91,7 @@
   $body-color: #fcc366;
 
   $table-background-color: #001519;
-  $table-striped-row-even-background-color: #212E2F;
+  $table-striped-row-even-background-color: #212e2f;
   $table-color: white;
   $table-head-cell-color: white;
   $table-cell-border-width: 0;
@@ -105,7 +137,12 @@
 
   #nav {
     background-color: #002a30;
-    background: linear-gradient(to bottom, #002a30 0%, #004851 93%, #007888 100%);
+    background: linear-gradient(
+      to bottom,
+      #002a30 0%,
+      #004851 93%,
+      #007888 100%
+    );
     color: #bbb;
     font-family: ruba, sans-serif;
 
@@ -124,7 +161,8 @@
     color: white;
   }
 
-  button.button, a.button {
+  button.button,
+  a.button {
     border-radius: 0px;
     font-family: ruba, sans-serif;
   }
@@ -140,7 +178,7 @@
   }
 
   .b-table .table a:hover {
-    color: #FCC366;
+    color: #fcc366;
   }
 
   a.dropdown-item:hover,
@@ -217,6 +255,4 @@
 
   // make sure to have all sensible defaults set
   @import "./global/sensible-defaults.scss";
-
 }
-

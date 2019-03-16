@@ -1,38 +1,37 @@
 import { DateTime } from 'luxon';
+import { replace } from 'lodash';
 
-export function quoteText( quote ) {
+export const quoteText = ( quote ) => {
   const user = quote.author.user;
   const textToQuote = quote.body;
-  const timeOfQuote = DateTime.fromISO( quote.updatedAt, { zone: 'utc' } )
-    .toFormat( 'dd.LL.yyyy HH:mm:ss' ) + ' UTC';
-  return `\n> User @${ user } wrote at ${ timeOfQuote }:\n> \n${ textToQuote.replace( /^/gm, '> ' ) }\n> \n`;
-}
+  const timeOfQuote = DateTime.fromISO( quote.updatedAt, { zone: 'utc' } ).toFormat( 'dd.LL.yyyy HH:mm:ss' ) + ' UTC';
+  return `\n> User @${user} wrote at ${timeOfQuote}:\n> \n${replace( textToQuote, /^/gm, '> ' )}\n> \n`;
+};
 
-export function formatDate( dateValue ) {
+export const formatDate = ( dateValue ) => {
   if ( !dateValue ) {
     return 'invalid datetime!';
   }
-  return DateTime.fromISO( String( dateValue ) )
-    .toFormat( 'dd.LL.yyyy' );
-}
+  return DateTime.fromISO( String( dateValue ) ).toFormat( 'dd.LL.yyyy' );
+};
 
-export function formatDateTimeRelative( dateValue ) {
+export const formatDateTimeRelative = ( dateValue ) => {
   if ( !dateValue ) {
     return 'invalid datetime!';
   }
   const time = DateTime.fromISO( String( dateValue ) );
-  return time .toRelative();
-}
+  return time.toRelative();
+};
 
-export function formatDateTimeAbsolute( dateValue ) {
+export const formatDateTimeAbsolute = ( dateValue ) => {
   if ( !dateValue ) {
     return 'invalid datetime!';
   }
   const time = DateTime.fromISO( String( dateValue ) );
   return time.toFormat( 'dd.LL.yyyy HH:mm:ss' );
-}
+};
 
-export function formatDateTimeFromNow( dateValue ) {
+export const formatDateTimeFromNow = ( dateValue ) => {
   if ( !dateValue ) {
     return 'invalid datetime!';
   }
@@ -41,5 +40,5 @@ export function formatDateTimeFromNow( dateValue ) {
   if ( daysDiff < -2 ) {
     return time.toFormat( 'dd.LL.yyyy HH:mm:ss' );
   }
-  return time .toRelative();
-}
+  return time.toRelative();
+};

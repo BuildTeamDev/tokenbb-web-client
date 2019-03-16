@@ -6,6 +6,7 @@ export default {
     fetching: false,
   },
   mutations: {
+    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     setFetching( state, fetching ) {
       state.fetching = fetching;
     },

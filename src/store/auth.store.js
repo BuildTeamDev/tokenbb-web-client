@@ -1,4 +1,8 @@
+// maybe fix?
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import jwtdecode from 'jwt-decode';
+// eslint-disable-next-line no-shadow
+import { filter, find, includes } from 'lodash';
 
 import { Toast } from 'buefy/dist/components/toast';
 
@@ -84,17 +88,15 @@ export default {
       state.manageLink = window.BTSSO.getAccountManageLink();
       state.addLink = window.BTSSO.addSteemAccount;
       state.autoMode = () => {
-        console.log( state );
+        console.info( state );
         const json = JSON.stringify( {
-          'account': state.current,
-          'referrer': 'buildteam',
-          'auto': 'true',
+          account: state.current,
+          referrer: 'buildteam',
+          auto: 'true',
         } );
-        window.steem_keychain.requestCustomJson( state.current, 'minnowbooster.settings', 'Posting', json, 'Enable MB Auto Mode',
-          ( response ) => {
-            console.log( response );
-          } );
-
+        window.steem_keychain.requestCustomJson( state.current, 'minnowbooster.settings', 'Posting', json, 'Enable MB Auto Mode', ( response ) => {
+          console.info( response );
+        } );
       };
     },
     setUsername( state, username ) {
@@ -115,13 +117,13 @@ export default {
       state.accounts = accounts;
 
       const saved = window.BTSSO.getSteemAccountForApp( `${global.forumname}.tokenbb` );
-      if ( state.accounts.filter( ( account ) => account.account === saved && account.authority.posting ).length > 0 ) {
+      if ( filter( state.accounts, ( account ) => account.account === saved && account.authority.posting ).length > 0 ) {
         state.current = saved;
-        console.log( `Using saved account ${ saved }` );
+        console.info( `Using saved account ${saved}` );
       } else {
-        const first = state.accounts.filter( ( account ) => account.authority.posting )[0];
+        const first = find( state.accounts, 'account.authority.posting' );
         const current = first ? first.account : 'anon';
-        console.log( `Using first account ${ current }` );
+        console.info( `Using first account ${current}` );
         state.current = current;
         window.BTSSO.rememberSteemAccountForApp( `${global.forumname}.tokenbb`, current );
       }
@@ -146,8 +148,8 @@ export default {
     fetchRoles( { commit, state } ) {
       listRoles()
         .then( ( forum ) => {
-          const isAdmin = forum.data.owners.includes( state.id );
-          const isMod = isAdmin || forum.data.mods.includes( state.id );
+          const isAdmin = includes( forum.data.owners, state.id );
+          const isMod = isAdmin || includes( forum.data.mods, state.id );
           commit( 'setRoles', { admin: isAdmin, mod: isMod } );
         } )
         .catch( ( err ) => {

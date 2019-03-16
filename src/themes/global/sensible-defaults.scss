@@ -4,64 +4,66 @@
   min-height: 3rem;
 }
 .navbar {
-a.dropdown-item {
-  width: auto;
-}
-.navbar-burger {
-  height: 4.25rem;
-  width: 4.25rem;
-}
+  a.dropdown-item {
+    width: auto;
+  }
+  .navbar-burger {
+    height: 4.25rem;
+    width: 4.25rem;
+  }
 }
 // Dropdown Category
 a.dropdown-item {
-width: auto;
+  width: auto;
 }
 // Topic List Card Overflow
 .home {
-.box {
-  .media-left {
-    margin-right: 0px;
-  }
-  .media-content {
-    overflow-x: hidden;
-  }
-  nav.level.is-tablet {
-    padding-bottom: 0px;
-  }
-  .mini-avatar img {
-    padding-top:2px;
-  }
-  .post-stats span {
-    font-size: 0.8rem;
-    margin-right: 2px;
-    margin-left: 2px;
-  }
-  .dropdown {
-    display:none;
-  }
-  span.upvote-value {
-    margin-right: 8px;
-  }
-  padding: 0.7rem;
-}
-@media screen and (max-width: 768px) {
-  .content {
-    text-align: center;
-}
   .box {
-    .post-stats span{
+    .media-left {
+      margin-right: 0px;
+    }
+    .media-content {
+      overflow-x: hidden;
+    }
+    nav.level.is-tablet {
+      padding-bottom: 0px;
+    }
+    .mini-avatar img {
+      padding-top: 2px;
+    }
+    .post-stats span {
+      font-size: 0.8rem;
+      margin-right: 2px;
+      margin-left: 2px;
+    }
+    .dropdown {
+      display: none;
+    }
+    span.upvote-value {
+      margin-right: 8px;
+    }
+    padding: 0.7rem;
+  }
+  @media screen and (max-width: 768px) {
+    .content {
       text-align: center;
     }
-    padding: 2rem;
+    .box {
+      .post-stats span {
+        text-align: center;
+      }
+      padding: 2rem;
+    }
   }
 }
-}
 // Upvote Button Size
-.mdi-36px.mdi-set, .mdi-36px.mdi:before {
+.mdi-36px.mdi-set,
+.mdi-36px.mdi:before {
   font-size: 24px;
 }
 /* Disabled Upvote Button */
-.mdi-36px.mdi-set, .mdi-36px.is-disabled {
+.mdi-36px.mdi-set,
+.mdi-36px.is-disabled {
   opacity: 0.2;
 }
 .post {
@@ -69,7 +71,7 @@ width: auto;
     margin-bottom: 0px;
   }
   .upvote-control {
-  top: 4px;
+    top: 4px;
     position: relative;
   }
   .upvote-control span {
@@ -92,7 +94,7 @@ width: auto;
 }
 .upvote-drop-control {
   .dropdown-content {
-    width:230px;
+    width: 230px;
     padding-right: 20px;
     margin: 0px;
     visibility: visible;
@@ -102,18 +104,19 @@ width: auto;
     position: absolute;
     top: -15px;
     left: -48px;
-}
+  }
   .percent-label {
     width: 40px;
-}
+  }
   .upvote-dropdownbutton {
     padding-left: 10px;
   }
   .popup-upvote {
-    display:flex;
+    display: flex;
   }
 }
-.quote-this,.edit-this {
+.quote-this,
+.edit-this {
   padding: 0px 3px 5px 3px;
 }
 .save {

@@ -1,34 +1,21 @@
 <template>
   <div class="container">
-    <div
-      v-if="fetching"
-      class="spacer"
-    >
-      <b-loading
-        :is-full-page="false"
-        :active="fetching"
-      />
+    <div v-if="fetching" class="spacer">
+      <b-loading :is-full-page="false" :active="fetching" />
     </div>
 
     <div v-if="!fetching">
       <div class="post-page">
         <header class="has-text-left">
-          <h1 class="title is-3">
-            {{ topic.title }}
-          </h1>
+          <h1 class="title is-3">{{ topic.title }}</h1>
           <span class="tag is-small">
             <CategoryTag :category-id="topic.categoryId" />
           </span>
-        &nbsp;
-          <a
-            class="topic-nav topic-nav-to-end"
-            @click="scrollTo('endOfTopic')"
-          >
-            Jump to end
-          </a>
+          &nbsp;
+          <a class="topic-nav topic-nav-to-end" @click="scrollTo('endOfTopic')">Jump to end</a>
         </header>
 
-        <br>
+        <br />
 
         <main ref="posts">
           <Post :data="topic" />
@@ -42,18 +29,8 @@
             :rounded="false"
             :per-page="perPage"
           />
-          <Post
-            v-for="(reply, index) in currentPage"
-            :key="index"
-            :data="reply"
-            :is-reply="true"
-          />
-          <a
-            class="topic-nav topic-nav-to-top"
-            @click="scrollTo('topOfPage')"
-          >
-            Back to Top
-          </a>
+          <Post v-for="(reply, index) in currentPage" :key="index" :data="reply" :is-reply="true" />
+          <a class="topic-nav topic-nav-to-top" @click="scrollTo('topOfPage')">Back to Top</a>
           <b-pagination
             v-if="topic.replies.length > perPage"
             :total="topic.replies.length"
@@ -66,7 +43,7 @@
           />
         </main>
 
-        <br>
+        <br />
         <a id="endOfTopic" />
         <ShowIfLoggedIn>
           <ReplyForm
@@ -123,9 +100,7 @@ export default {
     this.$root.$on( 'topicRefresh', this.fetchTopic );
   },
   computed: {
-    ...mapState( 'categories', [
-      'categoriesBySlug',
-    ] ),
+    ...mapState( 'categories', [ 'categoriesBySlug' ] ),
     currentPage() {
       const replies = this.topic.replies || [];
       const start = ( this.current - 1 ) * this.perPage;
@@ -156,7 +131,8 @@ export default {
         content: this.replyText,
       };
 
-      this.$store.dispatch( 'replies/submitReply', payload )
+      this.$store
+        .dispatch( 'replies/submitReply', payload )
         .then( ( reply ) => {
           if ( reply ) {
             this.fetchTopic( true );

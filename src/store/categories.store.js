@@ -1,8 +1,9 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { Toast } from 'buefy/dist/components/toast';
+import { findIndex, forEach } from 'lodash';
 
 import { addCategory, listCategories, removeCategory } from '../services/api.service';
 import { errorAlertOptions } from '../utils/notifications.js';
-
 
 export default {
   namespaced: true,
@@ -19,13 +20,13 @@ export default {
       state.categoryList.push( category );
     },
     remove( state, category ) {
-      const index = state.categoryList.findIndex( ( c ) => c._id === category._id );
+      const index = findIndex( state.categoryList, [ '_id', category._id ] );
       delete state.categoriesById[category._id];
       state.categoryList.splice( index, 1 );
     },
     updateCategoryList( state, categories ) {
       state.categoryList = categories;
-      categories.forEach( ( category ) => {
+      forEach( categories, ( category ) => {
         state.categoriesById[category._id] = category;
       } );
 

@@ -13,7 +13,9 @@
     "start": "npm run serve",
     "start_production": "node -v && node --harmony --experimental-modules --no-warnings server.mjs",
     "heroku-postbuild": "npm run build",
-    "ci_build": "BR=true vue-cli-service build"
+    "ci_build": "BR=true vue-cli-service build",
+    "fix-code": "prettier-eslint --write \"src/**/*.{js,jsx,mjs,vue}\" ",
+    "fix-styles": "prettier-stylelint --write \"src/**/*.{css,scss}}\" "
   },
   "dependencies": {
     "await-timeout": "^0.3.0",
@@ -24,6 +26,7 @@
     "koa": "^2.7.0",
     "koa-send": "^5.0.0",
     "koa-static": "^5.0.0",
+    "lodash": "^4.17.11",
     "luxon": "^1.11.4",
     "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
@@ -45,9 +48,16 @@
     "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^2.0.0",
     "eslint": "^5.15.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-lodash": "^5.1.0",
+    "eslint-plugin-prefer-arrow": "^1.1.5",
+    "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-vue": "^5.2.2",
     "lint-staged": "^8.1.5",
     "node-sass": "^4.11.0",
+    "prettier-eslint": "^8.8.2",
+    "prettier-eslint-cli": "^4.7.1",
+    "prettier-stylelint": "^0.4.2",
     "sass-loader": "^7.1.0",
     "terser": "^3.17.0",
     "vue-template-compiler": "^2.6.8",
@@ -67,16 +77,6 @@
     "request": "xhr"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "pre-commit": "npm run fix-code && npm run fix-styles"
   }
 }

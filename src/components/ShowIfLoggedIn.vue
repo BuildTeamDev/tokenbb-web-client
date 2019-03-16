@@ -1,16 +1,13 @@
 <template>
   <div>
     <div v-if="!loggedIn && !hidden">
-      <button @click="login">
-        {{ text || 'Login to reply' }}
-      </button>
+      <button @click="login">{{ text || 'Login to reply' }}</button>
     </div>
     <slot v-if="loggedIn" />
   </div>
 </template>
 
 <script>
-
 export default {
   props: {
     text: String,

@@ -1,10 +1,6 @@
 <template>
   <b-dropdown @change="onChange">
-    <button
-      slot="trigger"
-      class="button is-small"
-      type="button"
-    >
+    <button slot="trigger" class="button is-small" type="button">
       <span v-html="selected ? selected.name : allCategories.name" />
       <b-icon icon="menu-down" />
     </button>
@@ -13,11 +9,7 @@
       <span v-html="allCategories.name" />
     </b-dropdown-item>
 
-    <b-dropdown-item
-      v-for="category in categoryList"
-      :key="category._id"
-      :value="category"
-    >
+    <b-dropdown-item v-for="category in categoryList" :key="category._id" :value="category">
       <span v-html="category.name" />
     </b-dropdown-item>
   </b-dropdown>
@@ -38,10 +30,7 @@ export default {
     BDropdownItem: DropdownItem,
     BIcon: Icon,
   },
-  props: [
-    'selectedId',
-    'labelForAll',
-  ],
+  props: [ 'selectedId', 'labelForAll' ],
   data() {
     return {
       selected: ALL,
@@ -55,15 +44,9 @@ export default {
   },
   computed: {
     allCategories() {
-      return this.labelForAll
-        ? Object.assign( this.all, { name: this.labelForAll } )
-        : this.all;
+      return this.labelForAll ? Object.assign( this.all, { name: this.labelForAll } ) : this.all;
     },
-    ...mapState( 'categories', [
-      'fetching',
-      'categoryList',
-      'categoriesById',
-    ] ),
+    ...mapState( 'categories', [ 'fetching', 'categoryList', 'categoriesById' ] ),
   },
   methods: {
     onChange( value ) {

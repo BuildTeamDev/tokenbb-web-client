@@ -1,7 +1,7 @@
 .theme-default {
   // Set your brand colors
-  $primary: #38007D;  
-  $tag: #04F3C6;
+  $primary: #38007d;
+  $tag: #04f3c6;
   // Import Bulma's core
   @import "~bulma/sass/utilities/_all";
   @import "./global/variables.scss";
@@ -11,59 +11,65 @@
   @import "~buefy/src/scss/buefy";
   @import "~bulma-extensions/bulma-slider/dist/css/bulma-slider.sass";
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: transparent;
   }
 
-// Update Bulma's global variables
-$family-sans-serif: 'Avenir', Helvetica, Arial, sans-serif;
+  // Update Bulma's global variables
+  $family-sans-serif: "Avenir", Helvetica, Arial, sans-serif;
 
-// Set your colors
-  $background-one: #FCFCFC;
+  // Set your colors
+  $background-one: #fcfcfc;
   $background-two: #f4f4f4;
 
-// Background Colors //
-section {
-  background-color: $background-one;
-}
-.box {
-  background-color: $background-one;
-}
-.navstyle {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-}
-.dropdown-content {
-  background-color: white;
-}
-.dropdown-content.dropdown-item:hover {
-  background-color: $background;
-  color: $primary;
-}
-// Navbar Style
-
-// Set Fonts
-.post-page h1,h2,h3,h4,h5,h6,p {
-  color: black;
-}
-a {
-  color: $primary;
-}
-a:hover {
-  color: $tag;
-}
-// Tag Color
-.tag {
-  a {
-    color: black;
+  // Background Colors //
+  section {
+    background-color: $background-one;
   }
-  a:hover {
+  .box {
+    background-color: $background-one;
+  }
+  .navstyle {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  }
+  .dropdown-content {
+    background-color: white;
+  }
+  .dropdown-content.dropdown-item:hover {
+    background-color: $background;
     color: $primary;
   }
-  border: 1px solid lightgrey;
-}
-// Regular Button Styling
+  // Navbar Style
+
+  // Set Fonts
+  .post-page h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: black;
+  }
+  a {
+    color: $primary;
+  }
+  a:hover {
+    color: $tag;
+  }
+  // Tag Color
+  .tag {
+    a {
+      color: black;
+    }
+    a:hover {
+      color: $primary;
+    }
+    border: 1px solid lightgrey;
+  }
+  // Regular Button Styling
   .button.is-small {
     border-color: $primary;
     font-size: 0.9rem;
@@ -78,7 +84,7 @@ a:hover {
   .button:focus {
     border-color: $tag;
   }
-// New Topic Button 
+  // New Topic Button
   .button.is-small.is-topic {
     background-color: $primary;
     color: $background;
@@ -89,59 +95,61 @@ a:hover {
     color: $primary;
     border-color: $tag;
   }
-// Upvote Button Color
-  .mdi-36px.mdi-set, .mdi-36px.mdi:before {
+  // Upvote Button Color
+  .mdi-36px.mdi-set,
+  .mdi-36px.mdi:before {
     color: $primary;
   }
-  .mdi-36px.mdi-set:hover, .mdi-36px.mdi:hover {
+  .mdi-36px.mdi-set:hover,
+  .mdi-36px.mdi:hover {
     font-size: #333;
   }
-// Topic List Page Styling
-.box {
-  .title:hover {
+  // Topic List Page Styling
+  .box {
+    .title:hover {
+      color: $primary;
+    }
+    border-radius: 0px;
+    -webkit-box-shadow: 2px 2px 0px 0px $primary;
+    -moz-box-shadow: 2px 2px 0px 0px $primary;
+    box-shadow: 2px 2px 0px 0px $primary;
+    border: 1px solid lightgrey;
+  }
+  .home {
+    .box:hover {
+      background-color: $background-two;
+    }
+  }
+  // Upvote Dropdown Colors
+  .upvote-drop-control {
+    .dropdown-content {
+      background-color: $background-two;
+      border: 1px solid $background;
+    }
+    .percent-label {
+      color: $primary;
+    }
+  }
+  .pagination {
+    margin-top: 25px;
+  }
+  .pagination-link {
+    background-color: $background-one;
     color: $primary;
+    border-color: $primary;
+    font-weight: 500;
   }
-  border-radius: 0px;
-  -webkit-box-shadow: 2px 2px 0px 0px $primary;
-  -moz-box-shadow: 2px 2px 0px 0px $primary;
-  box-shadow: 2px 2px 0px 0px $primary;
-  border: 1px solid lightgrey;
-}
-.home {
-.box:hover {
-  background-color: $background-two;
-}
-}
-// Upvote Dropdown Colors
-.upvote-drop-control {
-  .dropdown-content {
-    background-color: $background-two;
-    border: 1px solid $background;
-  }
-  .percent-label {
+  .pagination-link:hover {
+    border-color: $tag;
     color: $primary;
+    background-color: $background-one;
   }
-}
-.pagination {
-  margin-top: 25px;
-}
-.pagination-link {
-  background-color: $background-one;
-  color: $primary;
-  border-color: $primary;
-  font-weight: 500;
-}
-.pagination-link:hover {
-  border-color: $tag;
-  color: $primary;
-  background-color: $background-one;
-}
-a.pagination-link.is-current {
-  background-color: $primary;
-  border: 1px solid white;
-  color: white;
-  font-size: 0.9rem;
-}
-// make sure to have all sensible defaults set
+  a.pagination-link.is-current {
+    background-color: $primary;
+    border: 1px solid white;
+    color: white;
+    font-size: 0.9rem;
+  }
+  // make sure to have all sensible defaults set
   @import "./global/sensible-defaults.scss";
 }

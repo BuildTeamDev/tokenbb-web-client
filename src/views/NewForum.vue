@@ -1,32 +1,17 @@
 <template>
   <div class="container">
-    <h2 class="title is-2">
-      Create a New Forum
-    </h2>
+    <h2 class="title is-2">Create a New Forum</h2>
 
-    <form
-      class="new-forum"
-      @submit.prevent="onSubmit"
-    >
+    <form class="new-forum" @submit.prevent="onSubmit">
       <b-field label="Name">
-        <b-input
-          v-model="name"
-          placeholder="Type name here"
-        />
+        <b-input v-model="name" placeholder="Type name here" />
       </b-field>
-      <button
-        role="submit"
-        :class="{ 'is-loading': fetching }"
-        class="button is-primary"
-      >
-        Create Forum
-      </button>
+      <button role="submit" :class="{ 'is-loading': fetching }" class="button is-primary">Create Forum</button>
     </form>
   </div>
 </template>
 
 <script>
-
 import Field from 'buefy/src/components/field/Field';
 import Input from 'buefy/src/components/input/Input';
 

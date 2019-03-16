@@ -1,9 +1,6 @@
 <template>
   <router-link :to="categoryRoute(categoryId)">
-    <b-icon
-      icon="tag"
-      size="is-small"
-    />
+    <b-icon icon="tag" size="is-small" />
     {{ this.category }}
   </router-link>
 </template>
@@ -28,7 +25,6 @@ export default {
         return category ? category.name : 'oops';
       },
     } ),
-
   },
   methods: {
     categoryRoute( id ) {

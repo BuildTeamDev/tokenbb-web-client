@@ -1,37 +1,36 @@
+// maybe fix?
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
 
 import { register } from 'register-service-worker';
 import { Snackbar } from 'buefy/dist/components/snackbar';
 
-export function registerSW() {
+export const registerSW = () => {
   if ( process.env.NODE_ENV === 'production' ) {
     register( `${process.env.BASE_URL}service-worker.js`, {
       ready() {
-        console.log( 'Service worker is active.' );
+        console.info( 'Service worker is active.' );
       },
       registered( registration ) {
-        console.log( 'Service worker has been registered.' );
+        console.info( 'Service worker has been registered.' );
       },
       cached( registration ) {
-        console.log( 'Content has been cached for offline use.' );
+        console.info( 'Content has been cached for offline use.' );
       },
       updatefound( registration ) {
-        console.log( 'New content is downloading.' );
+        console.info( 'New content is downloading.' );
       },
       updated( registration ) {
-        console.log( 'New content is available; please refresh.' );
+        console.info( 'New content is available; please refresh.' );
 
         let refreshing;
-        navigator.serviceWorker.addEventListener( 'controllerchange',
-          () => {
-            if ( refreshing ) {
-              return;
-            }
-            refreshing = true;
-            window.location.reload();
+        navigator.serviceWorker.addEventListener( 'controllerchange', () => {
+          if ( refreshing ) {
+            return;
           }
-        );
+          refreshing = true;
+          window.location.reload();
+        } );
 
         Snackbar.open( {
           message: 'A new version of this web app is available, please refresh the page to update.',
@@ -45,11 +44,11 @@ export function registerSW() {
         } );
       },
       offline() {
-        console.log( 'No internet connection found. App is running in offline mode.' );
+        console.warn( 'No internet connection found. App is running in offline mode.' );
       },
       error( error ) {
         console.error( 'Error during service worker registration:', error );
       },
     } );
   }
-}
+};

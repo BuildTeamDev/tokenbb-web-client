@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">
-      404
-    </h1>
+    <h1 class="title">404</h1>
   </div>
 </template>
 
@@ -10,11 +8,8 @@
 export default {
   name: 'NotFound',
   data() {
-    return {
-    };
+    return {};
   },
-  mounted() {
-
-  },
+  mounted() {},
 };
 </script>

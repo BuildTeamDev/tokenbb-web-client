@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-function loadView( view ) {
+const loadView = ( view ) => {
   return () => import( /* webpackChunkName: "view-[request]" */ `@/views/${view}.vue` );
-}
+};
 
 // xwebpackPrefetch: true
 Vue.use( Router );

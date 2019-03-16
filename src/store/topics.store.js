@@ -1,7 +1,25 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+// eslint-disable-next-line no-shadow
+import { forEach, find } from 'lodash';
 import { Toast } from 'buefy/dist/components/toast';
 
 import { createTopic, listTopics } from '../services/post.service.js';
 import { errorAlertOptions } from '../utils/notifications.js';
+
+const withPinnedToTop = ( topics ) => {
+  const pinned = [];
+  const notPinned = [];
+
+  forEach( topics, ( topic ) => {
+    return topic.pinned ? pinned.push( topic ) : notPinned.push( topic );
+  } );
+
+  notPinned.sort( ( a, b ) => {
+    return b.lastUpdate - a.lastUpdate;
+  } );
+
+  return pinned.concat( notPinned );
+};
 
 export default {
   namespaced: true,
@@ -14,7 +32,7 @@ export default {
       state.topicList = withPinnedToTop( state.topicList );
     },
     pin( state, topic ) {
-      const pinned = state.topicList.find( ( t ) => t.id === topic.id );
+      const pinned = find( state.topicList, [ 'id', topic.id ] );
 
       pinned.pinned = true;
 
@@ -22,7 +40,7 @@ export default {
       this.dispatch( 'topics/fetchAll' );
     },
     unpin( state, topic ) {
-      const pinned = state.topicList.find( ( t ) => t.id === topic.id );
+      const pinned = find( state.topicList, [ 'id', topic.id ] );
 
       pinned.pinned = false;
 
@@ -43,16 +61,15 @@ export default {
     createTopic( { commit }, { title, category, content } ) {
       const author = this.state.auth.current;
 
-      return createTopic( author, category, title, content )
-        .then( ( topic ) => {
-          console.log( topic );
-          if ( !topic.success ) {
-            throw new Error( topic.message );
-          }
-          commit( 'addTopic', topic.data );
+      return createTopic( author, category, title, content ).then( ( topic ) => {
+        console.info( topic );
+        if ( !topic.success ) {
+          throw new Error( topic.message );
+        }
+        commit( 'addTopic', topic.data );
 
-          return topic.data;
-        } );
+        return topic.data;
+      } );
     },
     fetchAll( { commit } ) {
       commit( 'setFetching', true );
@@ -70,20 +87,3 @@ export default {
     },
   },
 };
-
-function withPinnedToTop( topics ) {
-  const pinned = [];
-  const notPinned = [];
-
-  topics.forEach( ( topic ) => {
-    return topic.pinned
-      ? pinned.push( topic )
-      : notPinned.push( topic );
-  } );
-
-  notPinned.sort( ( a, b ) => {
-    return b.lastUpdate - a.lastUpdate;
-  } );
-
-  return pinned.concat( notPinned );
-}

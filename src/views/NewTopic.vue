@@ -1,56 +1,23 @@
 <template>
   <div class="container">
-    <form
-      class="new-topic"
-      @submit.prevent="onSubmit"
-    >
-      <b-field
-        class="input-title"
-        label="Title"
-      >
-        <b-input
-          v-model="title"
-          grouped
-          placeholder="Type title here"
-          expanded
-        />
+    <form class="new-topic" @submit.prevent="onSubmit">
+      <b-field class="input-title" label="Title">
+        <b-input v-model="title" grouped placeholder="Type title here" expanded />
       </b-field>
       <b-field label="Category">
-        <CategoryDropdown
-          :selected-id="selectedCategory ? selectedCategory._id : null"
-          :label-for-all="'-- Select a Category --'"
-          @change="onSelectCategory"
-        />
+        <CategoryDropdown :selected-id="selectedCategory ? selectedCategory._id : null" :label-for-all="'-- Select a Category --'" @change="onSelectCategory" />
       </b-field>
       <b-field label="Message">
-        <TextEditor
-          :fetching="fetching"
-          :initial-content="content"
-          @input="handleTextChange"
-        />
+        <TextEditor :fetching="fetching" :initial-content="content" @input="handleTextChange" />
       </b-field>
-      <button
-        class="button is-small"
-        role="submit"
-        :class="{ 'is-loading': fetching }"
-      >
-        Post Topic
-      </button>
-          &nbsp;
-      <button
-        class="button is-small"
-        role="cancel"
-        :class="{ 'is-loading': fetching }"
-        @click="onCancel"
-      >
-        Cancel
-      </button>
+      <button class="button is-small" role="submit" :class="{ 'is-loading': fetching }">Post Topic</button>
+      &nbsp;
+      <button class="button is-small" role="cancel" :class="{ 'is-loading': fetching }" @click="onCancel">Cancel</button>
     </form>
   </div>
 </template>
 
 <script>
-
 import { mapState } from 'vuex';
 
 import Field from 'buefy/src/components/field/Field';
@@ -78,9 +45,7 @@ export default {
     };
   },
   computed: {
-    ...mapState( 'categories', [
-      'categoryList',
-    ] ),
+    ...mapState( 'categories', [ 'categoryList' ] ),
   },
   watch: {
     categoryList( value ) {
@@ -96,10 +61,10 @@ export default {
     setSelectedCategory( categoryList ) {
       const queryCategory = this.$route.query.category;
       if ( this.$route.query.category && !this.selectedCategory ) {
-        const selectedCategory = categoryList.find( ( category ) => {
-          return category.slug === queryCategory
-            || category._id === queryCategory;
-        } ) || {};
+        const selectedCategory =
+          categoryList.find( ( category ) => {
+            return category.slug === queryCategory || category._id === queryCategory;
+          } ) || {};
         this.selectedCategory = selectedCategory;
       }
     },
@@ -119,8 +84,8 @@ export default {
 
       this.fetching = true;
 
-      this.$store.dispatch( 'topics/createTopic', payload )
-        .then( () => {
+      this.$store.dispatch( 'topics/createTopic', payload ).then(
+        () => {
           this.$store.dispatch( 'topics/fetchAll' ).then( () => {
             this.$router.push( '/' );
             Toast.open( {
@@ -128,14 +93,16 @@ export default {
               type: 'is-primary',
             } );
           } );
-        }, ( err ) => {
+        },
+        ( err ) => {
           console.error( err );
           Toast.open( {
             message: 'Oops! Could not create your topic at this moment. ' + err.message,
             type: 'is-danger',
           } );
           this.fetching = false;
-        } );
+        }
+      );
     },
     onSelectCategory( selected ) {
       this.selectedCategory = selected;

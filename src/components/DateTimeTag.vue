@@ -1,27 +1,15 @@
 <template>
-  <b-tooltip
-    :label="timeAbsolute"
-    size="is-small"
-    type="is-black"
-  >
-    <b-icon
-      icon="clock"
-      size="is-small"
-    />
+  <b-tooltip :label="timeAbsolute" size="is-small" type="is-black">
+    <b-icon icon="clock" size="is-small" />
     {{ this.timeRelative }}
     <template v-if="!this.time && this.numberOfReplies > 0">
       <span>by</span>
-      <Avatar
-        :author="this.lastReply.author"
-        :owner="this.lastReply.owner"
-        size="small"
-      />
+      <Avatar :author="this.lastReply.author" :owner="this.lastReply.owner" size="small" />
     </template>
   </b-tooltip>
 </template>
 
 <script>
-
 import Icon from 'buefy/src/components/icon/Icon';
 import Tooltip from 'buefy/src/components/tooltip/Tooltip';
 
@@ -70,7 +58,9 @@ export default {
     function updateTime() {
       const timeString = self.$props.time || self.$props.lastReply.time;
       const time = DateTime.fromISO( timeString );
-      const minutesDiff = DateTime.local().diff( time, 'minutes' ).as( 'minutes' );
+      const minutesDiff = DateTime.local()
+        .diff( time, 'minutes' )
+        .as( 'minutes' );
       if ( minutesDiff < 1 ) {
         self.$data.timeout = 1000;
       } else if ( minutesDiff < 10 ) {

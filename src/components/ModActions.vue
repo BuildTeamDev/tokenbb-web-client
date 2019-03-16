@@ -1,25 +1,12 @@
 <template>
   <div v-if="isAdmin()">
-    <b-select
-      v-model="selected"
-      placeholder="Moderator actions"
-      size="is-small"
-      :loading="loading"
-      @input="onSelect"
-    >
-      <option
-        v-for="(option, index) in options"
-        :key="index"
-        :value="option"
-      >
-        {{ option.name }}
-      </option>
+    <b-select v-model="selected" placeholder="Moderator actions" size="is-small" :loading="loading" @input="onSelect">
+      <option v-for="(option, index) in options" :key="index" :value="option">{{ option.name }}</option>
     </b-select>
   </div>
 </template>
 
 <script>
-
 import Select from 'buefy/src/components/select/Select';
 
 import { hide, pin, unpin } from '../services/api.service.js';
@@ -53,11 +40,11 @@ export default {
       selected: null,
       isComponentModalActive: false,
       actions: {
-        'pin': {
+        pin: {
           name: 'Pin this topic',
           callback: this.pinTopic,
         },
-        'unpin': {
+        unpin: {
           name: 'Unpin this topic',
           callback: this.unpinTopic,
         },
@@ -68,9 +55,7 @@ export default {
     this.selected = this.options[0];
 
     if ( !this.isReply ) {
-      const action = this.post.pinned
-        ? this.actions.unpin
-        : this.actions.pin;
+      const action = this.post.pinned ? this.actions.unpin : this.actions.pin;
 
       this.options.push( action );
     }
@@ -88,8 +73,7 @@ export default {
     },
     pinTopic() {
       Dialog.confirm( {
-        message: 'This will pin the topic to the top of the category. '
-          + 'Are you sure you want to do this?',
+        message: 'This will pin the topic to the top of the category. ' + 'Are you sure you want to do this?',
         onConfirm: async () => {
           this.loading = true;
 
@@ -117,8 +101,7 @@ export default {
     },
     unpinTopic() {
       Dialog.confirm( {
-        message: 'This will unpin the topic. '
-          + 'Are you sure you want to do this?',
+        message: 'This will unpin the topic. ' + 'Are you sure you want to do this?',
         onConfirm: async () => {
           this.loading = true;
 
@@ -146,8 +129,7 @@ export default {
     },
     hideTopic() {
       Dialog.confirm( {
-        message: 'This will hide the post from users. '
-                + 'Are you sure you want to do this?',
+        message: 'This will hide the post from users. ' + 'Are you sure you want to do this?',
         onConfirm: async () => {
           this.loading = true;
 

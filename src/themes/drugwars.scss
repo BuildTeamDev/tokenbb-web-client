@@ -5,21 +5,48 @@
   @import "./global/variables.scss";
 
   // Set your colors
-  $primary: #FFC400;
-  $info: #00A32A;
-  $tag: #003B8E;
+  $primary: #ffc400;
+  $info: #00a32a;
+  $tag: #003b8e;
 
   // Setup $colors to use as bulma classes (e.g. 'is-twitter')
   $colors: (
-          "white": ($white, $black),
-          "black": ($black, $white),
-          "light": ($light, $light-invert),
-          "dark": ($dark, $dark-invert),
-          "primary": ($primary, $primary-invert),
-          "info": ($info, $info-invert),
-          "success": ($success, $success-invert),
-          "warning": ($warning, $warning-invert),
-          "danger": ($danger, $danger-invert),
+    "white": (
+      $white,
+      $black
+    ),
+    "black": (
+      $black,
+      $white
+    ),
+    "light": (
+      $light,
+      $light-invert
+    ),
+    "dark": (
+      $dark,
+      $dark-invert
+    ),
+    "primary": (
+      $primary,
+      $primary-invert
+    ),
+    "info": (
+      $info,
+      $info-invert
+    ),
+    "success": (
+      $success,
+      $success-invert
+    ),
+    "warning": (
+      $warning,
+      $warning-invert
+    ),
+    "danger": (
+      $danger,
+      $danger-invert
+    )
   );
 
   $background: #080808;
@@ -35,7 +62,7 @@
   @import "~buefy/src/scss/buefy";
   @import "~bulma-extensions/bulma-slider/dist/css/bulma-slider.sass";
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: transparent;
@@ -100,7 +127,7 @@
       background-color: transparent;
       border-color: white;
     }
-    
+
     /* Account Dropdown Styling */
     .dropdown-menu .dropdown-content {
       background-color: $background;
@@ -119,363 +146,377 @@
   /* Category Dropdown */
   .container .level-left {
     .button {
-    background-color: transparent;
-    color: $primary;
-    border-color: $primary;
-    border-width: 2px;
+      background-color: transparent;
+      color: $primary;
+      border-color: $primary;
+      border-width: 2px;
+    }
+    .dropdown-menu .dropdown-content {
+      background-color: $background;
+      background: $background;
+      border: 1px solid $background-second;
+    }
+    .dropdown-content a {
+      color: white;
+    }
+    .dropdown-content a:hover {
+      color: white;
+      background: $info;
+    }
+    .dropdown-item {
+      background-color: $background;
+      border-color: $background-second;
+    }
+    a.dropdown-item {
+      padding-right: 0px !important;
+      width: 210px;
+    }
   }
-  .dropdown-menu .dropdown-content {
-    background-color: $background;
-    background: $background;
-    border: 1px solid $background-second;
-  }
-  .dropdown-content a {
-    color: white;
-  }
-  .dropdown-content a:hover {
-    color: white;
-    background: $info;
-  }
-  .dropdown-item {
-    background-color: $background;
+  /* New Topic Button */
+  .topic-button-style .button.is-primary {
+    background-color: $info;
     border-color: $background-second;
   }
-  a.dropdown-item {
-    padding-right: 0px !important;
-    width: 210px;
-  }
-}
-/* New Topic Button */
-.topic-button-style .button.is-primary {
-  background-color: $info;
-  border-color: $background-second;
-}
-.topic-button-style .button.is-primary:hover {
-  background-color: transparent;
-  border-color:$info;
-  color: $info;
-}
-.container .level-right .level-item .topic-style .button {
-  background: transparent;
-  color: white;
-  border-color: $tag;
-  border-width: 1px;
-}
-.container .level-right .level-item .topic-style .button:hover {
-  background-color: $tag;
-  color: $primary;
-  transition-duration: 450ms;
-}
-/* Front-Page Table Styling */
- .main-content {
-  background-color: transparent;
-  padding: 0px;
-  border-radius: 5px;
-}
-.tbody {
-  background-color: transparent;
-}
-.table {
-  background-color: transparent;
-  border-color: none !important;
-}
-tr {
-  background-color: $background;
-}
-/* Homepage Thread Styling */
-.content-box {
-  width: 98%;
-  background: $background;
-  border: 1px solid $background-second;
-  position: relative;
-  padding: 15px 0 15px 0;
-  -webkit-box-shadow: 5px 5px 0px 0px $primary;
-  -moz-box-shadow: 5px 5px 0px 0px $primary;
-  box-shadow: 5px 5px 0px 0px $primary;
-}
-.content-box:hover {
-  background-color: $background-second;
-}
-.content-box h2 {
-  font-size: 18px;
-}
-/* Left Content Box */
-.content-box .content-box-left {
-  float: left;
-  width: 90px;
-  text-align: center;
-  padding: 0 0 0 0;
-  position: relative;
-  height: 60px;
-}
-.content-box .content-box-left .pinned-box {
-  padding: 0;
-  margin: 15px 20px 0;
-  color: #888;
-}
-/* Middle Box */
-.content-box .content-box-middle, .content-box .content-box-middle2 {
-  padding: 1px 10px;
-  margin: 0 125px 0 0;
-}
-/* Right Box */
-.content-box .content-box-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 285px;
-  height: 100%;
-  padding: 15px 0 0 15px;
-}
-/* Upvote Button */
-.mdi-36px.mdi-set, .mdi-36px.mdi:before {
-  font-size: 24px;
-  color: $primary;
-  margin-top:12px;
-}
-.upvote-button {
-  padding-right: 10px;
-  float: right;
-}
-/* Disabled Upvote Button */
-.mdi-36px.mdi-set, .mdi-36px.is-disabled {
-  opacity: 0.4;
-}
-/* Meta Info Styling */ 
-.tip {
-  color: white;
-  font-size: 14px;
-  margin-top: 10px;
-}
-.tip-center {
-  padding-left: 10px;
-}
-.tip-right {
-  padding-left:10px;
-}
-/* Meta Icon Information Styling */
-.icon {
-  color: $info;
-}
-/* Category Tag Icon Styling */
-.mdi-tag:before {
-  content: "\F4F9";
-  color:$primary;
-}
-.tag:not(body).is-info {
-  margin-right: 7px;
-  background-color: transparent;
-  padding: 3px;
-  color:$primary;
-  font-size: small;
-}
-.tag:not(body).is-info:hover {
-  color: white;
-}
-
-/* Slider CSS */
-.upvote {
-  .vertical {
-    display: flex;
-    align-items: right;
-    min-width: 3rem;
-  }
-  .popover {
-    max-width: 14rem;
+  .topic-button-style .button.is-primary:hover {
     background-color: transparent;
+    border-color: $info;
+    color: $info;
   }
-  .slider {
-    margin: 0 5px;
-    width: 100%;
-    background-color: transparent;
-    min-width: 150px;
+  .container .level-right .level-item .topic-style .button {
+    background: transparent;
+    color: white;
+    border-color: $tag;
+    border-width: 1px;
   }
-  .percent-label {
-    margin: 20px 10p 0 10px;
-    padding-top:8px;
+  .container .level-right .level-item .topic-style .button:hover {
+    background-color: $tag;
     color: $primary;
+    transition-duration: 450ms;
   }
-  .dropdown-content {
-    margin: 0;
-    background-color: $background-second;
-    border: 1px solid $background;
-    padding-right: 5px;
+  /* Front-Page Table Styling */
+  .main-content {
+    background-color: transparent;
+    padding: 0px;
+    border-radius: 5px;
   }
-  .dropdown-item {
+  .tbody {
     background-color: transparent;
   }
-}
-/* Upvote Button Background */
-.container .is-top-left .button{
-  background-color: transparent;
-}
-.mdi-36px.mdi-set, .mdi-36px.mdi:before {
-  background-color: transparent;
-}
-/* Price Value & # of votes */
-.control {
-  padding-right: 25px; 
-}
-.value-control {
-  padding-top: 2px;
-}
-/* MOBILE VERSION */
-@media screen and (max-width: 998px) {
-.content-box {
-  padding-bottom: 35px;
-  margin: 0 5px 30px 0;
-  border-bottom: 0px solid transparent;
-}
-.content-box .content-box-left {
-  width: 70px;
-  height: 90px;
-  float: left;
-  margin-left: 0px;
-  padding-top:10px;
-}
-.content-box .content-box-middle {
-  float: none;
-  padding-top: 5px;
-  margin: 0 10px 10px 0;
-}
-/* Mobile Center Box */
-.meta-box .label-success, .meta-box .label-info, .meta-box .label-warning, .meta-box .label-danger {
-  background-color: transparent;
-}
-.content-box .content-box-middle h3 {
-  margin: 10px 0;
-}
-.content-box .content-box-right {
-  position: static;
-  width: 100% !important;
-  padding: 5px;
-  border-left: none;
-}
-.content-box .content-box-right span {
-  float: left;
-  width: 25%;
-  margin: 0;
-}
-.upvote {
-  float: right;
-  padding-top: 0px;
-  margin-right: 15px;
-}
-.value-control {
-  display: inline-flex;
-  padding-top: 6px;
-}
-.mdi-36px.mdi-set, .mdi-36px.mdi:before {
-  margin-top:0px;
-}
-.tip {
-  font-size: 14px;
-}
-}
-@media screen and (max-width: 520px) {
+  .table {
+    background-color: transparent;
+    border-color: none !important;
+  }
+  tr {
+    background-color: $background;
+  }
+  /* Homepage Thread Styling */
+  .content-box {
+    width: 98%;
+    background: $background;
+    border: 1px solid $background-second;
+    position: relative;
+    padding: 15px 0 15px 0;
+    -webkit-box-shadow: 5px 5px 0px 0px $primary;
+    -moz-box-shadow: 5px 5px 0px 0px $primary;
+    box-shadow: 5px 5px 0px 0px $primary;
+  }
+  .content-box:hover {
+    background-color: $background-second;
+  }
   .content-box h2 {
-    font-size: 14px;
+    font-size: 18px;
   }
-  #tiptop-control {
-    padding: 15px 0px 0px 0px;
+  /* Left Content Box */
+  .content-box .content-box-left {
+    float: left;
+    width: 90px;
+    text-align: center;
+    padding: 0 0 0 0;
+    position: relative;
+    height: 60px;
   }
-  .tip {
-    margin-top:5px;
+  .content-box .content-box-left .pinned-box {
+    padding: 0;
+    margin: 15px 20px 0;
+    color: #888;
   }
-  .tip-right {
-    display: block;
+  /* Middle Box */
+  .content-box .content-box-middle,
+  .content-box .content-box-middle2 {
+    padding: 1px 10px;
+    margin: 0 125px 0 0;
+  }
+  /* Right Box */
+  .content-box .content-box-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 285px;
+    height: 100%;
+    padding: 15px 0 0 15px;
+  }
+  /* Upvote Button */
+  .mdi-36px.mdi-set,
+  .mdi-36px.mdi:before {
+    font-size: 24px;
+    color: $primary;
+    margin-top: 12px;
   }
   .upvote-button {
-    padding-right: 0px;
+    padding-right: 10px;
+    float: right;
   }
-  .control .control-value {
-    float: left;
+  /* Disabled Upvote Button */
+  .mdi-36px.mdi-set,
+  .mdi-36px.is-disabled {
+    opacity: 0.4;
   }
-  .container .level-left {
-  .dropdown-menu {
-    display:flex;
-    margin-top:200px;
-    width:200px;
+  /* Meta Info Styling */
+  .tip {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
   }
-  .dropdown-content a {
-    color: $tag;
+  .tip-center {
+    padding-left: 10px;
   }
-  .dropdown-content a:hover {
-    color: $tag;
-    background: $primary;
+  .tip-right {
+    padding-left: 10px;
   }
-  .dropdown-item {
-    background-color: $background-second;
+  /* Meta Icon Information Styling */
+  .icon {
+    color: $info;
   }
-  a.dropdown-item {
-    padding-right: 0px !important;
-    width: 210px;
-  }
-}
-  }
-  /*--------- Thread Content ------------*/
-.post {
-  .post-body {
-    border: none;
-    width: 98%;
-    margin-bottom: 15px;
-  }
-  p.username {
-    padding-left: 20px;
-  }
-  small {
-    padding-right: 20px;
-  }
-  width: 100%;
-  -webkit-box-shadow: 5px 5px 0px 0px $primary;
-  -moz-box-shadow: 5px 5px 0px 0px $primary;
-  box-shadow: 5px 5px 0px 0px $primary;
-  border: 1px solid	#808080;
-  color: white;
-  background-color: $background-second;
-}
-/* FONT THREAD CONTENT */
-.post {
-  h1,h2,h3,h4,h5,h6,th,a {
+  /* Category Tag Icon Styling */
+  .mdi-tag:before {
+    content: "\F4F9";
     color: $primary;
   }
-  blockquote {
-    border-color: $info;
+  .tag:not(body).is-info {
+    margin-right: 7px;
+    background-color: transparent;
+    padding: 3px;
+    color: $primary;
+    font-size: small;
   }
-  a {
-    text-decoration:underline;
+  .tag:not(body).is-info:hover {
+    color: white;
   }
-}
-@media screen and (max-width: 620px) {
-  .post {
-    .post-body .level .level-right {
+
+  /* Slider CSS */
+  .upvote {
+    .vertical {
+      display: flex;
+      align-items: right;
+      min-width: 3rem;
+    }
+    .popover {
+      max-width: 14rem;
+      background-color: transparent;
+    }
+    .slider {
+      margin: 0 5px;
+      width: 100%;
+      background-color: transparent;
+      min-width: 150px;
+    }
+    .percent-label {
+      margin: 20px 10p 0 10px;
+      padding-top: 8px;
+      color: $primary;
+    }
+    .dropdown-content {
+      margin: 0;
+      background-color: $background-second;
+      border: 1px solid $background;
+      padding-right: 5px;
+    }
+    .dropdown-item {
+      background-color: transparent;
+    }
+  }
+  /* Upvote Button Background */
+  .container .is-top-left .button {
+    background-color: transparent;
+  }
+  .mdi-36px.mdi-set,
+  .mdi-36px.mdi:before {
+    background-color: transparent;
+  }
+  /* Price Value & # of votes */
+  .control {
+    padding-right: 25px;
+  }
+  .value-control {
+    padding-top: 2px;
+  }
+  /* MOBILE VERSION */
+  @media screen and (max-width: 998px) {
+    .content-box {
+      padding-bottom: 35px;
+      margin: 0 5px 30px 0;
+      border-bottom: 0px solid transparent;
+    }
+    .content-box .content-box-left {
+      width: 70px;
+      height: 90px;
+      float: left;
+      margin-left: 0px;
+      padding-top: 10px;
+    }
+    .content-box .content-box-middle {
+      float: none;
+      padding-top: 5px;
+      margin: 0 10px 10px 0;
+    }
+    /* Mobile Center Box */
+    .meta-box .label-success,
+    .meta-box .label-info,
+    .meta-box .label-warning,
+    .meta-box .label-danger {
+      background-color: transparent;
+    }
+    .content-box .content-box-middle h3 {
+      margin: 10px 0;
+    }
+    .content-box .content-box-right {
+      position: static;
+      width: 100% !important;
+      padding: 5px;
+      border-left: none;
+    }
+    .content-box .content-box-right span {
+      float: left;
+      width: 25%;
+      margin: 0;
+    }
+    .upvote {
+      float: right;
+      padding-top: 0px;
+      margin-right: 15px;
+    }
+    .value-control {
+      display: inline-flex;
+      padding-top: 6px;
+    }
+    .mdi-36px.mdi-set,
+    .mdi-36px.mdi:before {
+      margin-top: 0px;
+    }
+    .tip {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 520px) {
+    .content-box h2 {
+      font-size: 14px;
+    }
+    #tiptop-control {
+      padding: 15px 0px 0px 0px;
+    }
+    .tip {
+      margin-top: 5px;
+    }
+    .tip-right {
       display: block;
     }
-    .steemit-display a {
-      display: none;
+    .upvote-button {
+      padding-right: 0px;
     }
-    .mod-display {
+    .control .control-value {
       float: left;
-      margin: 20px 0;
     }
-    h1 {
-      font-size: 24px;
-
-    }
-    h2 {
-      font-size: 22px;
-    }
-    h3 {
-      font-size: 20px;
-    }
-    h4 {
-      font-size: 18px;
-    }
-    h5 {
-      font-size: 16px;
+    .container .level-left {
+      .dropdown-menu {
+        display: flex;
+        margin-top: 200px;
+        width: 200px;
+      }
+      .dropdown-content a {
+        color: $tag;
+      }
+      .dropdown-content a:hover {
+        color: $tag;
+        background: $primary;
+      }
+      .dropdown-item {
+        background-color: $background-second;
+      }
+      a.dropdown-item {
+        padding-right: 0px !important;
+        width: 210px;
+      }
     }
   }
-}
+  /*--------- Thread Content ------------*/
+  .post {
+    .post-body {
+      border: none;
+      width: 98%;
+      margin-bottom: 15px;
+    }
+    p.username {
+      padding-left: 20px;
+    }
+    small {
+      padding-right: 20px;
+    }
+    width: 100%;
+    -webkit-box-shadow: 5px 5px 0px 0px $primary;
+    -moz-box-shadow: 5px 5px 0px 0px $primary;
+    box-shadow: 5px 5px 0px 0px $primary;
+    border: 1px solid #808080;
+    color: white;
+    background-color: $background-second;
+  }
+  /* FONT THREAD CONTENT */
+  .post {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    th,
+    a {
+      color: $primary;
+    }
+    blockquote {
+      border-color: $info;
+    }
+    a {
+      text-decoration: underline;
+    }
+  }
+  @media screen and (max-width: 620px) {
+    .post {
+      .post-body .level .level-right {
+        display: block;
+      }
+      .steemit-display a {
+        display: none;
+      }
+      .mod-display {
+        float: left;
+        margin: 20px 0;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+      h3 {
+        font-size: 20px;
+      }
+      h4 {
+        font-size: 18px;
+      }
+      h5 {
+        font-size: 16px;
+      }
+    }
+  }
   /* Settings Page */
   form .label {
     color: $tag;

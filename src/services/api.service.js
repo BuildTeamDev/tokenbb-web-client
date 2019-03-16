@@ -1,6 +1,6 @@
 import steem from './steem.service';
 
-function requestAsync( opts ) {
+const requestAsync = ( opts ) => {
   if ( opts.body ) {
     opts.body = JSON.stringify( opts.body );
   }
@@ -9,52 +9,51 @@ function requestAsync( opts ) {
   }
   opts.headers.accept = 'application/json';
   opts.headers['content-type'] = 'application/json';
-  return fetch( opts.url, opts )
-    .then( ( response ) => response.json() );
-}
+  return fetch( opts.url, opts ).then( ( response ) => response.json() );
+};
 
-export function apiURL() {
+export const apiURL = () => {
   return `${process.env.VUE_APP_API_HOST}/v1/forum/${global.forumname}`;
-}
+};
 
-export function unpin( topic ) {
+export const unpin = ( topic ) => {
   const opts = {
     method: 'DELETE',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + `/topics/${topic.steem.author}/${topic.steem.permlink}/pin`,
   };
 
   return requestAsync( opts );
-}
+};
 
-export function pin( topic ) {
+export const pin = ( topic ) => {
   const opts = {
     method: 'PUT',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + `/topics/${topic.steem.author}/${topic.steem.permlink}/pin`,
   };
 
   return requestAsync( opts );
-}
+};
 
-export function hide( topic ) {
+export const hide = ( topic ) => {
   const opts = {
     method: 'DELETE',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + `/topics/${topic.steem.author}/${topic.steem.permlink}/hide`,
   };
 
   return requestAsync( opts );
-}
+};
 
-export function vote( author, permlink, voter, weight ) {
+export const vote = ( author, permlink, voter, weight ) => {
   const opts = {
     method: 'POST',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + `/topics/${author}/${permlink}/vote`,
     body: {
       voter,
@@ -63,20 +62,20 @@ export function vote( author, permlink, voter, weight ) {
   };
 
   return requestAsync( opts );
-}
+};
 
-export function listRoles() {
+export const listRoles = () => {
   const opts = {
     method: 'GET',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + '/',
   };
 
   return requestAsync( opts );
-}
+};
 
-// function deleteTopic (topic) {
+// const deleteTopic  = (topic) => {
 //   var opts = {
 //     method: 'DELETE',
 //     json: true,
@@ -88,20 +87,20 @@ export function listRoles() {
 //   return requestAsync(opts)
 // }
 
-export function listCategories() {
+export const listCategories = () => {
   return requestAsync( {
     method: 'GET',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + '/categories',
   } );
-}
+};
 
-export function createForum( forumName ) {
+export const createForum = ( forumName ) => {
   const opts = {
     method: 'POST',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: `${process.env.VUE_APP_API_HOST}/v1/forum/`,
     body: {
       name: forumName,
@@ -109,13 +108,13 @@ export function createForum( forumName ) {
   };
 
   return requestAsync( opts );
-}
+};
 
-export function addCategory( categoryName, title, description ) {
+export const addCategory = ( categoryName, title, description ) => {
   const opts = {
     method: 'POST',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + '/categories/',
     body: {
       name: categoryName,
@@ -125,20 +124,20 @@ export function addCategory( categoryName, title, description ) {
   };
 
   return requestAsync( opts );
-}
+};
 
-export function removeCategory( categoryName ) {
+export const removeCategory = ( categoryName ) => {
   const opts = {
     method: 'DELETE',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url: apiURL() + '/categories/' + categoryName,
   };
 
   return requestAsync( opts );
-}
+};
 
-export function listValidTopics( category ) {
+export const listValidTopics = ( category ) => {
   let url = apiURL() + '/topics';
 
   if ( category ) {
@@ -148,49 +147,49 @@ export function listValidTopics( category ) {
   const opts = {
     method: 'GET',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url,
   };
 
   return requestAsync( opts );
-}
+};
 
-export function listValidReplies( post ) {
+export const listValidReplies = ( post ) => {
   const { author, permlink } = post;
   const url = apiURL() + `/replies?author=${author}&permlink=${permlink}`;
 
   const opts = {
     method: 'GET',
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     url,
   };
 
   return requestAsync( opts );
-}
+};
 
-export function publishTopic( category, author, title, body ) {
+export const publishTopic = ( category, author, title, body ) => {
   return requestAsync( {
     method: 'POST',
     url: `${apiURL()}/${category}/topics`,
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     body: {
       author,
       title,
       body,
     },
   } );
-}
+};
 
-export function publishReply( parentComment, message ) {
+export const publishReply = ( parentComment, message ) => {
   const { author, content } = message;
 
   const opts = {
     method: 'POST',
     url: apiURL() + `/topics/${parentComment.steem.author}/${parentComment.steem.permlink}/reply`,
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     body: {
       author,
       body: content,
@@ -198,16 +197,16 @@ export function publishReply( parentComment, message ) {
   };
 
   return requestAsync( opts );
-}
+};
 
-export function publishEdit( post, message ) {
+export const publishEdit = ( post, message ) => {
   const { content, title } = message;
 
   const opts = {
     method: 'POST',
     url: apiURL() + `/topics/${post.steem.author}/${post.steem.permlink}/edit`,
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
     body: {
       title,
       body: content,
@@ -215,24 +214,23 @@ export function publishEdit( post, message ) {
   };
 
   return requestAsync( opts );
-}
+};
 
-export function getValidTopic( author, permlink ) {
+export const getValidTopic = ( author, permlink ) => {
   const opts = {
     method: 'GET',
     url: apiURL() + `/topics/${author}/${permlink}`,
     json: true,
-    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    headers: steem.token ? { Authorization: 'Bearer ' + steem.token } : {},
   };
 
-  return requestAsync( opts )
-    .catch( ( err ) => {
-      if ( err.statusCode === 404 ) {
-        return null;
-      }
+  return requestAsync( opts ).catch( ( err ) => {
+    if ( err.statusCode === 404 ) {
+      return null;
+    }
 
-      this.$ga.exception( err );
+    this.$ga.exception( err );
 
-      throw err;
-    } );
-}
+    throw err;
+  } );
+};
