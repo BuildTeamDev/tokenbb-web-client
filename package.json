@@ -8,7 +8,7 @@
     "serve": "vue-cli-service serve --host 0.0.0.0 --port 3000",
     "build": "vue-cli-service build",
     "test": "npm run lint",
-    "lint": "vue-cli-service lint",
+    "lint": "npm run fix-code && npm run fix-styles",
     "pretest": "vue-cli-service lint --no-fix",
     "start": "npm run serve",
     "start_production": "node -v && node --harmony --experimental-modules --no-warnings server.mjs",
