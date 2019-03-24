@@ -1,0 +1,14 @@
+
+fail_on_violations: true
+
+eslint:
+  enabled: true
+  config_file: .eslintrc
+  ignore_file: .eslintignore
+  version: 5.7.0
+scss:
+  enabled: false
+jshint:
+  enabled: true
+  config_file: .jshintrc
+  ignore_file: .eslintignore

@@ -77,6 +77,31 @@
               </button>
             </p>
           </div>
+<<<<<<< HEAD
+          <b-dropdown v-if="auth.username" class="navbar-item dropdown-style">
+            <button class="button is-primary" type="button" slot="trigger">
+              <span>Account</span>
+              <b-icon icon="menu-down"></b-icon>
+            </button>
+
+            <b-dropdown-item class="is-right" @click="auth.addLink">
+                Add Steem Account
+            </b-dropdown-item>
+            <b-dropdown-item class="is-right" @click="toggleDarkMode">
+                Activate {{ darkMode ? 'Light' : 'Dark' }} Theme
+            </b-dropdown-item>
+            <b-dropdown-item class="is-right" @click="auth.autoMode">
+                Enable MB Auto Mode
+            </b-dropdown-item>
+            <b-dropdown-item class="is-right" @click="logout">
+                Logout
+            </b-dropdown-item>
+            <b-dropdown-item class="is-right" target="_blank" v-bind:href="auth.manageLink">
+                Manage
+            </b-dropdown-item>
+          </b-dropdown>
+=======
+>>>>>>> master
         </div>
 
         <b-dropdown
@@ -97,12 +122,6 @@
             @click="auth.addLink"
           >
             Add Steem Account
-          </b-dropdown-item>
-          <b-dropdown-item
-            class="is-right"
-            @click="toggleDarkMode"
-          >
-            Activate {{ darkMode ? 'Light' : 'Dark' }} Theme
           </b-dropdown-item>
           <b-dropdown-item
             class="is-right"

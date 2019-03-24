@@ -1,4 +1,5 @@
 # TokenBB Frontend
+[![CircleCI](https://circleci.com/gh/BuildTeamDev/tokenbb-web-client/tree/master.svg?style=svg)](https://circleci.com/gh/BuildTeamDev/tokenbb-web-client/tree/master)
 
 ## Install
 

@@ -1,16 +1,24 @@
 <template>
   <b-dropdown @change="onChange">
-    <button class="button" type="button" slot="trigger">
-      <span v-html="selected ? selected.name : allCategories.name"></span>
-      <b-icon icon="menu-down"></b-icon>
+    <button
+      slot="trigger"
+      class="button is-small"
+      type="button"
+    >
+      <span v-html="selected ? selected.name : allCategories.name" />
+      <b-icon icon="menu-down" />
     </button>
 
     <b-dropdown-item :value="allCategories">
-      <span v-html="allCategories.name"></span>
+      <span v-html="allCategories.name" />
     </b-dropdown-item>
 
-    <b-dropdown-item v-for="category in categoryList" :value="category" :key="category._id">
-      <span v-html="category.name"></span>
+    <b-dropdown-item
+      v-for="category in categoryList"
+      :key="category._id"
+      :value="category"
+    >
+      <span v-html="category.name" />
     </b-dropdown-item>
   </b-dropdown>
 </template>
@@ -18,9 +26,18 @@
 <script>
 import { mapState } from 'vuex';
 
+import Dropdown from 'buefy/src/components/dropdown/Dropdown';
+import DropdownItem from 'buefy/src/components/dropdown/DropdownItem';
+import Icon from 'buefy/src/components/icon/Icon';
+
 const ALL = { name: 'All Categories' };
 
 export default {
+  components: {
+    BDropdown: Dropdown,
+    BDropdownItem: DropdownItem,
+    BIcon: Icon,
+  },
   props: [
     'selectedId',
     'labelForAll',

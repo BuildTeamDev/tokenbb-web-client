@@ -8,7 +8,10 @@
     "parser": "babel-eslint"
   },
   "extends": [
-    "plugin:vue/essential"
+    "plugin:vue/recommended"
+  ],
+  "plugins": [
+    "vue"
   ],
   "env": {
     "browser": true,

@@ -1,13 +1,13 @@
 <template>
-  <router-link :to="categoryRoute(categoryId)">
-    <b-icon icon="tag" size="is-small"></b-icon>
-    <span class="tag is-info" v-html="category">
-    </span>
+  <router-link :to="categoryRoute(category)">
+    {{ category.name }}
   </router-link>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+
+import Icon from 'buefy/src/components/icon/Icon';
 
 export default {
   props: {
@@ -18,17 +18,17 @@ export default {
       category( state ) {
         const byId = state.categories.categoriesById || {};
         const category = byId[this.categoryId];
-        return category ? category.name : 'oops';
+        return category ? category : { name: 'oops' };
       },
     } ),
 
   },
   methods: {
-    categoryRoute( id ) {
+    categoryRoute( cat ) {
       return {
-        path: '/',
+        path: '/topic-list',
         query: {
-          category: id,
+          category: cat.slug,
         },
       };
     },

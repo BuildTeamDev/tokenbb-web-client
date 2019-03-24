@@ -12,7 +12,8 @@
     "pretest": "vue-cli-service lint --no-fix",
     "start": "npm run serve",
     "start_production": "node -v && node --harmony --experimental-modules --no-warnings server.mjs",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "ci_build": "BR=true vue-cli-service build"
   },
   "dependencies": {
     "await-timeout": "^0.3.0",
@@ -23,20 +24,19 @@
     "koa": "^2.7.0",
     "koa-send": "^5.0.0",
     "koa-static": "^5.0.0",
+    "lodash": "^4.17.11",
+    "luxon": "^1.11.4",
     "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4",
     "steem-editor": "^1.0.9",
     "vue": "^2.6.8",
     "vue-analytics": "^5.16.4",
     "vue-router": "^3.0.2",
-    "vue-sanitize": "^0.2.0",
-    "vue2-editor": "^2.6.6",
-    "vuex": "^3.1.0",
-    "xhr": "^2.5.0"
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@gfx/zopfli": "^1.0.11",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
@@ -51,7 +51,8 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "terser": "^3.17.0",
-    "vue-template-compiler": "^2.6.8"
+    "vue-template-compiler": "^2.6.8",
+    "webpack-bundle-analyzer": "^3.1.0"
   },
   "postcss": {
     "plugins": {

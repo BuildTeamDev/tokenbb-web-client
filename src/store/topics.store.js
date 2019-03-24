@@ -1,6 +1,7 @@
+import { Toast } from 'buefy/dist/components/toast';
+
 import { createTopic, listTopics } from '../services/post.service.js';
 import { errorAlertOptions } from '../utils/notifications.js';
-import { Toast } from 'buefy/dist/components/toast';
 
 export default {
   namespaced: true,
@@ -45,15 +46,18 @@ export default {
       return createTopic( author, category, title, content )
         .then( ( topic ) => {
           console.log( topic );
+          if ( !topic.success ) {
+            throw new Error( topic.message );
+          }
           commit( 'addTopic', topic.data );
 
           return topic.data;
         } );
     },
-    fetchAll( { commit } ) {
+    fetchAll( { commit }, args ) {
       commit( 'setFetching', true );
 
-      listTopics( null )
+      listTopics( args ? args.category : null )
         .then( ( topics ) => {
           commit( 'updateTopicList', withPinnedToTop( topics ) );
           commit( 'setFetching', false );

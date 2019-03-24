@@ -1,38 +1,44 @@
 <template>
-  <div class="container fill">
-    <h2 class="title is-2">Create a New Forum</h2>
+  <div class="container">
+    <h2 class="title is-2">
+      Create a New Forum
+    </h2>
 
-    <form @submit.prevent="onSubmit" class="new-forum">
-      <div class="level is-mobile">
-        <div class="level-left">
-          <div class="level-item">
-            <b-field label="Name">
-              <b-input v-model="name" placeholder="Type name here">
-              </b-input>
-            </b-field>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-          <button role="submit"
-            :class="{ 'is-loading': fetching }"
-            class="button is-primary">
-            Create Forum
-          </button>
-        </div>
-      </div>
+    <form
+      class="new-forum"
+      @submit.prevent="onSubmit"
+    >
+      <b-field label="Name">
+        <b-input
+          v-model="name"
+          placeholder="Type name here"
+        />
+      </b-field>
+      <button
+        role="submit"
+        :class="{ 'is-loading': fetching }"
+        class="button is-primary"
+      >
+        Create Forum
+      </button>
     </form>
   </div>
 </template>
 
 <script>
+
+import Field from 'buefy/src/components/field/Field';
+import Input from 'buefy/src/components/input/Input';
+
 import { createForum } from '../services/api.service.js';
 
+import { Toast } from 'buefy/dist/components/toast';
+
 export default {
-  name: 'new-forum',
+  name: 'NewForum',
   components: {
+    BField: Field,
+    BInput: Input,
   },
   data() {
     return {
@@ -43,7 +49,7 @@ export default {
   methods: {
     onSubmit() {
       if ( this.name.length < 1 ) {
-        return this.$toast.open( {
+        return Toast.open( {
           type: 'is-danger',
           message: 'Please write a forum name',
         } );
@@ -57,7 +63,7 @@ export default {
         } )
         .catch( ( err ) => {
           console.error( err );
-          this.$toast.open( {
+          Toast.open( {
             message: 'Oops! Could not create your forum at this moment. ' + err,
             type: 'is-danger',
           } );

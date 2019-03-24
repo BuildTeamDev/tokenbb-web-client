@@ -1,19 +1,24 @@
 <template>
-  <form @submit.prevent="$emit('submit')" class="new-reply">
+  <form
+    class="new-reply"
+    @submit.prevent="$emit('submit')"
+  >
     <b-field>
       <TextEditor
         ref="editor"
         :fetching="fetching"
-        @input="handleTextChange">
-      </TextEditor>
+        @input="handleTextChange"
+      />
     </b-field>
 
     <b-field>
-      <div class="control">
-        <button role="submit"
-          class="is-topic"
+      <div>
+        <button
+          class="button is-small is-topic"
+          role="submit"
           :disabled="text.length == 0"
-          v-bind:class="{ 'is-loading': fetching }">
+          :class="{ 'is-loading': fetching }"
+        >
           Reply
         </button>
       </div>
@@ -22,10 +27,14 @@
 </template>
 
 <script>
-import TextEditor from '@/components/TextEditor.vue';
+
+import Field from 'buefy/src/components/field/Field';
+
+import TextEditor from './TextEditor.vue';
 
 export default {
   components: {
+    BField: Field,
     TextEditor,
   },
   props: {
@@ -33,11 +42,6 @@ export default {
     text: String,
     quote: String,
     quoteAuthor: String,
-  },
-  methods: {
-    handleTextChange( value ) {
-      this.$emit( 'input', value );
-    },
   },
   data() {
     return {
@@ -49,6 +53,11 @@ export default {
         [ 'code-block' ],
       ],
     };
+  },
+  methods: {
+    handleTextChange( value ) {
+      this.$emit( 'input', value );
+    },
   },
 };
 </script>

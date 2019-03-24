@@ -1,113 +1,176 @@
-/* Mobile Navigation */
-@media screen and (min-width: 1087px) {  
-  .nav-settings .navbar-item .is-primary {
-    padding: 25px;
-  }
+body {
+  min-height: 100vh !important;
 }
-/* Mobile Nav */
-@media screen and (max-width: 1087px) {
-section {
-  position: relative;
+/* Navigation Bar */
+.logo {
+  content: $logo;
+  min-height: 3rem;
 }
-/* Mobile Navigation Menu */
-#nav {
-  .navbar-burger {
-    padding: 10px;
-    height: 5rem;
-    width: 5rem;
-  }
-  .navbar-brand .nav-logo .navbar-item {
-    margin: 0;
-    padding-top: 10px;
-  }
-  .navbar-item {
-    display: inline-block;
-  }
-  .navbar-end {
-    float: right;
-  }
-  /* "Settings" Mobile Position */
-  .navbar-item .is-expanded tr {
-    position: absolute;
-  }
-  .navbar-start {
-    display: inline;
-  }
-  /* "Account Picker" Mobile CSS */
-  .navbar-item .nav-account {
-    float: left;
-  }
-  /*"Account Settings" Mobile CSS */
-  .navbar-item .nav-account-settings {
-    float: right;
-  }
-  .dropdown-content {
-    width: 210px;
-    float: right;
+.navbar {
+a.dropdown-item {
+  width: auto;
+}
+.navbar-burger {
+  height: 4.25rem;
+  width: 4.25rem;
+}
+}
+.content.topic-title {
+  margin-bottom: 0px;
+}
+// Dropdown Category
+a.dropdown-item {
+width: auto;
+}
+// Topic List Card Overflow
+.topic-list {
+.box {
+  .media-left {
     margin-right: 0px;
   }
-  .dropdown-content {
-  max-width: 235px;
-  top: 10%;
+  .media-content {
+    overflow: hidden;
   }
-  .dropdown.is-mobile-modal .dropdown-menu {
-    position: fixed;
-    max-width: 100%;
-    top: 27% !important;
-    overflow-x: hidden;
+  nav.level.is-tablet {
+    padding-bottom: 0px;
   }
-  .dropdown .background {
-    background-color: transparent;
+  .mini-avatar img {
+    padding-top:2px;
   }
-  .navbar-menu {
-    width: 100%;
-    transition-duration: 500ms;
-    position: absolute;
-    padding-bottom: 50px;
-    background-color: $background;
+  .post-stats span {
+    font-size: 0.8rem;
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+  .dropdown {
+    display:none;
+  }
+  span.upvote-value {
+    margin-right: 8px;
+  }
+  padding: 0.6rem 0 0.1rem 0.3rem;
+}
+@media screen and (max-width: 768px) {
+  .content {
+    text-align: center;
+}
+  .box {
+    .post-stats span{
+      text-align: center;
+    }
+    padding: 2rem;
   }
 }
-.table a {
-  font-size: 14px;
 }
+.media-content {
+  overflow-x:hidden;
 }
-/* Mobile Styling */
-
-/* Homepage Content Styling */
-
-/* Upvote Button Background */
-.container .is-top-left .button{
-background-color: transparent;
-}
+// Upvote Button Size
 .mdi-36px.mdi-set, .mdi-36px.mdi:before {
-background-color: transparent;
+  font-size: 24px;
 }
-/* Price Value & # of votes */
-.control {
-padding-right: 25px; 
+/* Disabled Upvote Button */
+.mdi-36px.mdi-set, .mdi-36px.is-disabled {
+  opacity: 0.2;
 }
-.value-control {
-padding-top: 2px;
+.post {
+  .box {
+    margin-bottom: 0px;
+    margin-top: 1.5vh;
+  }
+  .upvote-control {
+  top: 4px;
+    position: relative;
+  }
+  .upvote-control span {
+    padding-right: 0.5rem;
+  }
+  .content {
+    padding-bottom: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    .quote-this {
+      text-align: center;
+    }
+  }
 }
-/* Category Page */
-.card-header-icon {
-float: right;
+// MOBILE - Header
+@media screen and (max-width: 768px) {
+  .navbar .navbar-item {
+    text-align: right;
+  }
 }
-.toggle-control {
-margin-bottom: 20px;
+.upvote-drop-control {
+  .dropdown-content {
+    width:230px;
+    padding-right: 20px;
+    margin: 0px;
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    position: absolute;
+    top: -15px;
+    left: -48px;
 }
-.card {
-.title {
-padding: 10px;
-width: 100%;
-padding-bottom: 0px;
-margin-bottom: 10px;
+  .dropdown-item:focus {
+  outline: none !important;
 }
-.content .title h3 {
-font-size: 20px;
+  .percent-label {
+    width: 40px;
 }
-.subtitle {
-font-size: 14px;
-padding-left: 5px;
+  .upvote-dropdownbutton {
+    padding-left: 10px;
+  }
+  .popup-upvote {
+    display:flex;
+  }
 }
+.quote-this,.edit-this {
+  padding: 0px 3px 5px 3px;
+}
+.save {
+  margin-right: 1rem;
+}
+.card-header {
+  margin-top: 20px;
+}
+.card-header-title {
+  font-size: 1rem;
+}
+.table {
+  overflow: hidden;
+}
+.cat-stats {
+  font-size: .8rem;
+}
+.columns.is-tablet.cat-list {
+  overflow: hidden;
+}
+.card-cat .card-content {
+  padding:0px;
+}
+.b-table .table {
+  padding: 15px 10px;
+}
+.columns.cat-style {
+  margin: 2px 2px 2px 2px;
+  padding:0px;
+}
+.pagination {
+  margin-top: 25px;
+}
+a.pagination-link.is-current {
+  font-size: 0.9rem;
+}
+.nav-control {
+    margin:20px 0px 0px 0;
+  }
+.cat-stats {
+  padding-top: 20px;
+}
+@media screen and (max-width: 768px) {
+  .column.is-half.cat-title {
+    text-align: center;
+  }
 }

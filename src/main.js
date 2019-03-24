@@ -1,26 +1,25 @@
-import Buefy from 'buefy';
-import moment from 'moment';
 
-import steemEditor from 'steem-editor';
-import 'steem-editor/dist/css/index.css';
 import Vue from 'vue';
-
-import VueAnalytics from 'vue-analytics';
 
 import App from './App.vue';
 
-import sanitize from './plugins/sanitize.js';
 import { registerSW } from './registerServiceWorker';
 import router from './router';
 import store from './store/index.js';
+
+import steemEditor from 'steem-editor';
+import 'steem-editor/dist/css/index.css';
+import VueAnalytics from 'vue-analytics';
+
+import { formatDate, formatDateTimeFromNow } from './utils/content';
 
 registerSW();
 
 const contextMap = {
   default: { theme: 'theme-default', forum: 'support', icon: 'favicon.ico' },
-  monsters: { theme: 'theme-monsters', forum: 'monsters', icon: 'favicon_teeth.png' },
+  monsters: { theme: 'theme-monsters', forum: 'monsters', icon: 'themes/monsters/favicon_teeth.png' },
   drugwars: { theme: 'theme-drugwars', forum: 'drugwars', icon: 'themes/drugwars/small.png' },
-  localhost: { theme: 'theme-default', forum: 'monsters', icon: 'favicon.ico' },
+  localhost: { theme: 'theme-default', forum: 'test', icon: 'favicon.ico' },
 };
 let context = contextMap.default;
 const subs = ( new URL( window.location ) ).hostname.split( '.' );
@@ -45,9 +44,6 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 Vue.config.productionTip = false;
 
-Vue.use( Buefy );
-Vue.use( sanitize );
-
 Vue.use( VueAnalytics, {
   id: process.env.VUE_APP_GA_ID,
   router,
@@ -69,24 +65,8 @@ function setGAUserID( userID ) {
 
 Vue.use( steemEditor );
 
-Vue.filter( 'formatDate', ( value ) => {
-  if ( value ) {
-    return moment.utc( String( value ) )
-      .format( 'MMM Do YYYY' );
-  }
-} );
-
-const locale = window.navigator.userLanguage || window.navigator.language || 'en';
-console.log( `Setting TimeZone Language to ${locale}` );
-moment.locale( locale );
-
-Vue.filter( 'fromNow', ( value ) => {
-  if ( value ) {
-    return moment.utc( String( value ) )
-      .add( moment().utcOffset(), 'minutes' )
-      .calendar();
-  }
-} );
+Vue.filter( 'formatDate', formatDate );
+Vue.filter( 'fromNow', formatDateTimeFromNow );
 
 Vue.filter( 'usernameDisplay', ( username, owner ) => {
   if ( username === process.env.VUE_APP_ANON_USER ) {

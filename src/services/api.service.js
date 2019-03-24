@@ -1,5 +1,17 @@
-import steem from '@/services/steem.service';
-import requestAsync from 'request-promise';
+import steem from './steem.service';
+
+function requestAsync( opts ) {
+  if ( opts.body ) {
+    opts.body = JSON.stringify( opts.body );
+  }
+  if ( !opts.headers ) {
+    opts.headers = {};
+  }
+  opts.headers.accept = 'application/json';
+  opts.headers['content-type'] = 'application/json';
+  return fetch( opts.url, opts )
+    .then( ( response ) => response.json() );
+}
 
 export function apiURL() {
   return `${process.env.VUE_APP_API_HOST}/v1/forum/${global.forumname}`;
@@ -130,7 +142,7 @@ export function listValidTopics( category ) {
   let url = apiURL() + '/topics';
 
   if ( category ) {
-    url = apiURL() + `${category}/topics`;
+    url = apiURL() + `/${category}/topics`;
   }
 
   const opts = {
@@ -181,6 +193,23 @@ export function publishReply( parentComment, message ) {
     headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
     body: {
       author,
+      body: content,
+    },
+  };
+
+  return requestAsync( opts );
+}
+
+export function publishEdit( post, message ) {
+  const { content, title } = message;
+
+  const opts = {
+    method: 'POST',
+    url: apiURL() + `/topics/${post.steem.author}/${post.steem.permlink}/edit`,
+    json: true,
+    headers: steem.token ? { 'Authorization': 'Bearer ' + steem.token } : {},
+    body: {
+      title,
       body: content,
     },
   };

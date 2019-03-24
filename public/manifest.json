@@ -1,16 +1,11 @@
 {
-  "name": "vue",
-  "short_name": "vue",
+  "name": "TokenBB",
+  "short_name": "TBB",
   "icons": [
     {
-      "src": "/img/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/img/icons/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/img/icons/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/ico"
     }
   ],
   "start_url": "/index.html",
