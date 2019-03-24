@@ -168,7 +168,6 @@ export default {
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
       this.$root.$emit( `set-darkMode-${this.darkMode}` );
-      console.log( this.darkMode );
     },
   },
 };
