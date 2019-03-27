@@ -88,12 +88,13 @@ export default {
     },
   },
   mounted() {
-    if ( this.categoryList ) {
-      this.setSelectedCategory( this.categoryList );
-    }
+    this.setSelectedCategory( this.categoryList );
   },
   methods: {
     setSelectedCategory( categoryList ) {
+      if ( !categoryList || categoryList.length === 0 ) {
+        return;
+      }
       const queryCategory = this.$route.query.category;
       if ( this.$route.query.category && !this.selectedCategory ) {
         const selectedCategory = categoryList.find( ( category ) => {

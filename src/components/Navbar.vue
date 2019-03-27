@@ -98,6 +98,7 @@
           >
             Add Steem Account
           </b-dropdown-item>
+          <!-- disable for now till we habe better explanation
           <b-dropdown-item
             class="is-right"
             @click="toggleDarkMode"
@@ -110,6 +111,7 @@
           >
             Enable MB Auto Mode
           </b-dropdown-item>
+          -->
           <b-dropdown-item
             class="is-right"
             target="_blank"

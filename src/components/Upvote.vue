@@ -120,6 +120,18 @@ export default {
         || this.votes.filter( ( _vote ) => _vote.voter === this.$store.state.auth.current ).length > 0;
     },
   },
+  watch: {
+    author( newVal, oldVal ) {
+      if ( newVal !== oldVal ) {
+        this.updateValue();
+      }
+    },
+    permlink( newVal, oldVal ) {
+      if ( newVal !== oldVal ) {
+        this.updateValue();
+      }
+    },
+  },
   mounted() {
     this.updateValue();
   },

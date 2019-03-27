@@ -14,6 +14,12 @@
           placeholder="Type name here"
         />
       </b-field>
+      <b-field label="Admin">
+        <b-input
+          v-model="admin"
+          placeholder="Add admin bt user"
+        />
+      </b-field>
       <button
         role="submit"
         :class="{ 'is-loading': fetching }"
@@ -44,6 +50,7 @@ export default {
     return {
       fetching: false,
       name: '',
+      admin: '',
     };
   },
   methods: {
@@ -57,7 +64,7 @@ export default {
 
       this.fetching = true;
 
-      createForum( this.name )
+      createForum( this.name, this.admin )
         .then( ( forum ) => {
           window.location = `https://${forum.data.slug}.${process.env.VUE_APP_BASE_PATH}/settings`;
         } )

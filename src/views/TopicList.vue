@@ -236,13 +236,14 @@ export default {
   created() {
     this.$store.dispatch( 'categories/fetchAll' );
   },
-  updated() {
-    if ( this.categoryList ) {
-      this.setSelectedCategory( this.categoryList );
-    }
+  mounted() {
+    this.setSelectedCategory( this.categoryList );
   },
   methods: {
     setSelectedCategory( categoryList ) {
+      if ( !categoryList || categoryList.length === 0 ) {
+        return;
+      }
       const queryCategory = this.$route.query.category;
       if ( this.$route.query.category && !this.selectedCategory ) {
         this.selectedCategory = categoryList.find( ( category ) => {

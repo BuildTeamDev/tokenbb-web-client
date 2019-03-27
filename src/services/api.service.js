@@ -97,7 +97,7 @@ export function listCategories() {
   } );
 }
 
-export function createForum( forumName ) {
+export function createForum( forumName, admin ) {
   const opts = {
     method: 'POST',
     json: true,
@@ -105,6 +105,7 @@ export function createForum( forumName ) {
     url: `${process.env.VUE_APP_API_HOST}/v1/forum/`,
     body: {
       name: forumName,
+      admin,
     },
   };
 
