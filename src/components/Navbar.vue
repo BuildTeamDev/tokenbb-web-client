@@ -98,13 +98,15 @@
           >
             Add Steem Account
           </b-dropdown-item>
-          <!-- disable for now till we habe better explanation
+
           <b-dropdown-item
             class="is-right"
             @click="toggleDarkMode"
           >
             Activate {{ darkMode ? 'Light' : 'Dark' }} Theme
           </b-dropdown-item>
+
+          <!-- disable for now till we habe better explanation
           <b-dropdown-item
             class="is-right"
             @click="auth.autoMode"
