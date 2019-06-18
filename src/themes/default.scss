@@ -120,20 +120,25 @@ h5.card-header-title a {
 }
 
 .progress::-webkit-progress-bar {
-  background-color: #4E5D6C;
+  background-color: #1f2d3b;
 }
 
 .progress::-webkit-progress-value {
-  background-color: #1f2d3b;
+  background-color: #68C01E;
+  border-top: 2px solid #81FE02;
+  border-left: 2px solid #81FE02;
 }
 
 .progress::-moz-progress-bar {
-  background-color: #1f2d3b;
+  background-color: #68C01E;
+  border-top: 2px solid #81FE02;
+  border-left: 2px solid #81FE02;
 }
 
 .progress::-ms-fill {
-  background-color: #1f2d3b;
-  border: none;
+  background-color: #68C01E;
+  border-top: 2px solid #81FE02;
+  border-left: 2px solid #81FE02;
 }
 
 .progress-label {
