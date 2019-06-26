@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "await-timeout": "^0.5.0",
-    "buefy": "^0.7.7",
+    "buefy": "^0.7.8",
     "bulma-extensions": "6.2.4",
     "dsteem": "^0.11.2",
     "jwt-decode": "^2.2.0",
