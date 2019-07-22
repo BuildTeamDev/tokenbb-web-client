@@ -30,7 +30,7 @@
     "register-service-worker": "^1.6.2",
     "request": "^2.88.0",
     "steem-editor": "^1.1.7",
-    "transliteration": "2.1.3",
+    "transliteration": "2.1.4",
     "vue": "^2.6.10",
     "vue-analytics": "^5.17.0",
     "vue-draggable-nested-tree": "^2.2.17",
