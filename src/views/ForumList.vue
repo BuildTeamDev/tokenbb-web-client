@@ -29,7 +29,7 @@
                 </template>
                 <div class="column is-half cat-title">
                   <a
-                    :href="cprops.row.steem.canonical"
+                    :href="cprops.row.domains && cprops.row.domains.length > 1 ? cprops.row.domains[0] : cprops.row.steem.canonical"
                     target="_blank"
                     class="cprops-title"
                   >{{ cprops.row.name }}</a><br>
