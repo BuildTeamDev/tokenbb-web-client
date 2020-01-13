@@ -33,7 +33,7 @@
     "transliteration": "2.1.5",
     "vue": "^2.6.10",
     "vue-analytics": "^5.17.0",
-    "vue-draggable-nested-tree": "^2.2.17",
+    "vue-draggable-nested-tree": "^2.2.20",
     "vue-router": "^3.0.7",
     "vuex": "^3.1.1"
   },
